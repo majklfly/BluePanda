@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="libs/css/style.css">
+    <title>Blue Panda</title>
+</head>
+
+<body>
+    <h1>Blue Panda Geo search</h1>
+    <section>
+        <table>
+            <tr>
+                <td>Wikipedia Search</td>
+                <td><input type="text" name="wikiSearchInput" class="form-control" id="wikiSearchInput"></td>
+                <td><input type="submit" name="submit" class="btn btn-primary" id="btnSearchWiki"></td>
+            </tr>
+            <tr>
+                <td>Country Info Search</td>
+                <td>
+                    <select name="countryInfoSearch" class="form-control" id="countryInfoSearch">
+                        <option value="DE">Germany</option>
+                        <option value="GB">Great Britain</option>
+                        <option value="FR">France</option>
+                        <option value="US">USA</option>
+                        <option value="SK">Slovakia</option>
+                        <option value="CZ">Czechia</option>
+                    </select></td>
+
+                <td><input type="submit" name="submit" class="btn btn-primary" id="btnSearchCountry"></td>
+            </tr>
+            <tr>
+                <td>Neighbours of country</td>
+                <td>
+                    <select id="selCountry" class="form-control">
+                        <option value="DE">Germany</option>
+                        <option value="GB">Great Britain</option>
+                        <option value="FR">France</option>
+                        <option value="US">USA</option>
+                        <option value="SK">Slovakia</option>
+                        <option value="CZ">Czechia</option>
+                    </select></td>
+                <td><input type="submit" name="submit" class="btn btn-primary" id="btnSearchNeighbours"></td>
+            </tr>
+        </table>
+        <datalist id="countries">
+            <option value="DE">
+            <option value="IT">
+            <option value="CZ">
+            <option value="USA">
+            <option value="SK">
+          </datalist>
+    </section>
+    <article>
+        <p id="title"></p>
+        <p id="content"></p>
+        <div>
+            <div class="countryInfoRow">
+                <label for="capitalCity" id="labelCapitalCity"></label>
+                <p id="capitalCity"></p>
+            </div>
+            <div class="countryInfoRow">
+                <label for="continent" id="labelContinent"></label>
+                <p id="continent"></p>
+            </div>
+            <div class="countryInfoRow">
+                <label for="population" id="labelPopulation"></label>
+                <p id="population"></p>
+            </div>
+            <div class="countryInfoRow">
+                <label for="currencyCode" id="labelCurrencyCode"></label>
+                <p id="currencyCode"></p>
+            </div>
+            <div class="countryInfoRow">
+                <label for="language" id="labelLanguage"></label>
+                <p id="language"></p>
+            </div>
+            <div class="countryInfoRow">
+                <label for="areaInSqKm" id="labelArea"></label>
+                <p id="areaInSqKm"></p>
+            </div>
+        </div>
+
+    </article>
+
+    <script type="application/javascript" src="libs/js/jquery-2.2.3.min.js"></script>
+    <script type="application/javascript" src="libs/js/script.js"></script>
+</body>
+
+</html>
