@@ -18,6 +18,7 @@ header {
     background-color: var(--background-color);
     height: 8vh;
     width: 100vw;
+    min-height: 50px;
     position: fixed;
     top: 0;
     left: 0;
@@ -90,4 +91,36 @@ header h1 {
     left: 2px;
     border-radius: 50%;
     transition: transform 0.2s linear;
+}
+
+#cardsContainer {
+    width: 95vw;
+    height: 80vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-left: 50%;
+    margin-top: 15vh;
+    transform: translate(-50%);
+}
+
+.card {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 1%;
+    height: 300px;
+    width: 400px;
+    margin: 5px;
+}
+
+.card-content {
+    width: 100%;
+    height: 80%;
+    overflow: scroll;
+}
+
+.card-header {
+    font-size: clamp(25px, 2vw, 50px);
+    font-weight: 700;
+    font-family: 'Open Sans', sans-serif;
 }
