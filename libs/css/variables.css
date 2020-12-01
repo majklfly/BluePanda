@@ -1,0 +1,5 @@
+:root {
+    --background-color: #404040;
+    --text-color: white;
+    --background-image: url("../svg/backgroundLight.svg")
+}
