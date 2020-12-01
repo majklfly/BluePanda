@@ -1,4 +1,15 @@
-@import './variables.css';
+html {
+    --background-color: #404040;
+    --text-color: white;
+    --background-image: url("../svg/backgroundLight.svg")
+}
+
+html.darkMode {
+    --background-color: lightgrey;
+    --text-color: #404040;
+    --background-image: url("../svg/backgroundDark.svg")
+}
+
 body {
     background-image: var(--background-image);
 }
@@ -38,6 +49,7 @@ header h1 {
 
 .checkbox:checked+.label {
     background-color: white;
+    border-color: red;
 }
 
 .checkbox:checked+.label .ball {
@@ -61,12 +73,12 @@ header h1 {
 
 .iconDay {
     color: black;
-    font-size: 15px;
+    width: 15px;
 }
 
 .iconNight {
     color: white;
-    font-size: 15px;
+    width: 15px;
 }
 
 .ball {
