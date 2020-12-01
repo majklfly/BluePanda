@@ -42,7 +42,11 @@ $.ajax({
                     result.data.map((item) => {
                         console.log($("#Sales").length);
                         $("#department" + item.department).append(
-                            "<h3>" + item.firstName + " " + item.lastName + "</h3>"
+                            "<h3 id='card-content-item'>" +
+                            item.firstName +
+                            " " +
+                            item.lastName +
+                            "</h3>"
                         );
                     });
                 },

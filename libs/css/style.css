@@ -25,6 +25,7 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
+    z-index: 2;
 }
 
 header h1 {
@@ -50,7 +51,6 @@ header h1 {
 
 .checkbox:checked+.label {
     background-color: white;
-    border-color: red;
 }
 
 .checkbox:checked+.label .ball {
@@ -102,6 +102,7 @@ header h1 {
     margin-left: 50%;
     margin-top: 15vh;
     transform: translate(-50%);
+    color: var(--text-color);
 }
 
 .card {
@@ -111,16 +112,50 @@ header h1 {
     height: 300px;
     width: 400px;
     margin: 5px;
+    position: relative;
+    background-color: var(--background-color);
+    scrollbar-width: 1px;
 }
 
 .card-content {
-    width: 100%;
+    width: 90%;
     height: 80%;
     overflow: scroll;
+    font-size: clamp(15px, 1.6vw, 18px);
+    position: absolute;
+    bottom: 0;
+    left: 5%;
 }
 
 .card-header {
-    font-size: clamp(25px, 2vw, 50px);
+    font-size: clamp(20px, 2vw, 20px);
     font-weight: 700;
     font-family: 'Open Sans', sans-serif;
+    text-align: center;
+}
+
+.card-content h3 {
+    cursor: grab;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+ ::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+ ::-webkit-scrollbar-thumb {
+    background: var(--text-color);
+    background-clip: content-box;
+    border-radius: 9px;
+}
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
