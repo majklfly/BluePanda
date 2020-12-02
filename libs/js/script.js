@@ -21,7 +21,9 @@ $.ajax({
         result.data.map((department, index) => {
             console.log("department", department);
             const card =
-                "<article class='card' style='max-width: 18rem;'><div class='card-header'>" +
+                "<article class='card' id=card" +
+                department.id +
+                " style='max-width: 18rem;'><div class='card-header'>" +
                 department.name +
                 "</div><div class='card-content' id='department" +
                 department.name +

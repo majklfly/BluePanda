@@ -1,13 +1,85 @@
 html {
     --background-color: #404040;
     --text-color: white;
-    --background-image: url("../svg/backgroundLight.svg")
+    --background-image: url("../svg/backgroundLight.svg");
+    --card1: darkred;
+    --card2: darkblue;
+    --card3: darkorange;
+    --card4: darkgreen;
+    --card5: purple;
+    --card6: coral;
+    --card7: olive;
+    --card8: darkturquoise;
+    --card9: slateblue;
+    --card10: darkslategray;
+    --card11: chocolate;
+    --card12: navy;
 }
 
 html.darkMode {
     --background-color: lightgrey;
     --text-color: #404040;
-    --background-image: url("../svg/backgroundDark.svg")
+    --background-image: url("../svg/backgroundDark.svg");
+    --card1: lightgrey;
+    --card2: lightgrey;
+    --card3: lightgrey;
+    --card4: lightgrey;
+    --card5: lightgrey;
+    --card6: lightgrey;
+    --card7: lightgrey;
+    --card8: lightgrey;
+    --card9: lightgrey;
+    --card10: lightgrey;
+    --card11: lightgrey;
+    --card12: lightgrey;
+}
+
+#card1 {
+    background-color: var(--card1);
+}
+
+#card2 {
+    background-color: var(--card2);
+}
+
+#card3 {
+    background-color: var(--card3);
+}
+
+#card4 {
+    background-color: var(--card4);
+}
+
+#card5 {
+    background-color: var(--card5);
+}
+
+#card6 {
+    background-color: var(--card6);
+}
+
+#card7 {
+    background-color: var(--card7);
+}
+
+#card8 {
+    background-color: var(--card8);
+}
+
+#card9 {
+    background-color: var(--card9);
+}
+
+#card10 {
+    background-color: var(--card10);
+}
+
+#card11 {
+    background-color: var(--card11);
+}
+
+#card12 {
+    background-color: var(--card12);
 }
 
 body {
@@ -106,7 +178,6 @@ header h1 {
 }
 
 .card {
-    border: 1px solid black;
     border-radius: 10px;
     padding: 1%;
     height: 300px;
@@ -115,6 +186,7 @@ header h1 {
     position: relative;
     background-color: var(--background-color);
     scrollbar-width: 1px;
+    opacity: 0.8;
 }
 
 .card-content {
