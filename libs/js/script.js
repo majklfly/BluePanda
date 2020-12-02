@@ -19,7 +19,6 @@ $.ajax({
     dataType: "json",
     success: function(result) {
         result.data.map((department, index) => {
-            console.log("department", department);
             const card =
                 "<article class='card' id=card" +
                 department.id +
@@ -33,16 +32,12 @@ $.ajax({
                 .queue(function() {});
         });
         if ($(".card").length) {
-            console.log("updated");
             $.ajax({
                 url: "libs/php/getAll.php",
                 type: "GET",
                 dataType: "json",
                 success: function(result) {
-                    console.log("employees", result);
-
                     result.data.map((item) => {
-                        console.log($("#Sales").length);
                         $("#department" + item.department).append(
                             "<h3 id='card-content-item'>" +
                             item.firstName +
@@ -63,4 +58,8 @@ $.ajax({
     error: function(jqXHR, textStatus, errorThrown) {
         console.log(jqXHR);
     },
+});
+
+$(document).ready(function() {
+    $("#navigationContainer").heroFade();
 });

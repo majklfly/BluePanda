@@ -1,3 +1,5 @@
+@import "./switch.css";
+@import "./header.css";
 html {
     --background-color: #404040;
     --text-color: white;
@@ -86,85 +88,6 @@ body {
     background-image: var(--background-image);
 }
 
-header {
-    background-color: var(--background-color);
-    height: 8vh;
-    width: 100vw;
-    min-height: 50px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    z-index: 2;
-}
-
-header h1 {
-    font-family: 'Roboto Slab', serif;
-    margin-left: 1vw;
-    color: var(--text-color);
-}
-
-#checkboxContainer {
-    position: absolute;
-    right: 5px;
-    top: 5px;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-.checkbox {
-    opacity: 0;
-    position: absolute;
-}
-
-.checkbox:checked+.label {
-    background-color: white;
-}
-
-.checkbox:checked+.label .ball {
-    transform: translateX(24px);
-    background-color: black;
-}
-
-.label {
-    height: 26px;
-    width: 50px;
-    background-color: #111;
-    display: flex;
-    border-radius: 50px;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-    padding: 5px;
-    top: 2vh;
-    right: 5vw;
-}
-
-.iconDay {
-    color: black;
-    width: 15px;
-}
-
-.iconNight {
-    color: white;
-    width: 15px;
-}
-
-.ball {
-    width: 22px;
-    height: 22px;
-    position: absolute;
-    background-color: #fff;
-    top: 2px;
-    left: 2px;
-    border-radius: 50%;
-    transition: transform 0.2s linear;
-}
-
 #cardsContainer {
     width: 95vw;
     height: 80vh;
@@ -230,4 +153,11 @@ header h1 {
 
  ::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+@media only screen and (min-width: 1500px) {
+    #navigationContainer {
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
 }

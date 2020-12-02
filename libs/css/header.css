@@ -1,0 +1,40 @@
+#headBackground {
+    width: 101vw;
+    left: 0;
+    top: -2vh;
+    height: auto;
+    max-width: 1500px;
+    position: relative;
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+}
+
+#navigationContainer {
+    position: relative;
+    top: 0;
+    left: -2vw;
+    width: 101%;
+    height: auto;
+    max-width: 1500px;
+}
+
+header {
+    background-color: var(--background-color);
+    height: 8vh;
+    width: 101vw;
+    min-height: 50px;
+    position: absolute;
+    bottom: 2.5vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    opacity: 0.8;
+    max-width: 1500px;
+    z-index: 2;
+}
+
+header h1 {
+    font-family: 'Roboto Slab', serif;
+    margin-left: 3vw;
+    color: var(--text-color);
+}
