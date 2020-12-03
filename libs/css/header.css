@@ -33,7 +33,7 @@ header {
 header h1 {
     font-family: 'Roboto Slab', serif;
     margin-left: 3vw;
-    margin-top: 3%;
+    margin-top: 20px;
     font-size: clamp(20px, 3vw, 80px);
     color: var(--text-color);
 }
