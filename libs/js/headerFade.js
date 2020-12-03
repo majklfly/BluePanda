@@ -16,6 +16,17 @@
                     self.find("header").css({
                         opacity: 0 + scrollPercent * 3,
                     });
+
+                    // set the color of icons in the menu
+                    if (scrollPercent > 0.2) {
+                        self.find(".menuIcon").css({
+                            color: "var(--text-color)",
+                        });
+                    } else {
+                        self.find(".menuIcon").css({
+                            color: "black",
+                        });
+                    }
                 }
             });
         };

@@ -4,7 +4,7 @@
 
 .checkbox {
     opacity: 0;
-    position: absolute;
+    position: relative;
 }
 
 .checkbox:checked+.label {
@@ -12,13 +12,15 @@
 }
 
 .checkbox:checked+.label .ball {
-    transform: translateX(24px);
+    transform: translateX(105%);
     background-color: black;
 }
 
 .label {
-    height: 26px;
-    width: 50px;
+    height: 2vw;
+    width: 4vw;
+    min-width: 25px;
+    min-height: 15px;
     background-color: #111;
     display: flex;
     border-radius: 50px;
@@ -26,33 +28,27 @@
     justify-content: space-between;
     position: relative;
     padding: 5px;
-    top: 2vh;
-    right: 5vw;
 }
 
 .iconDay {
     color: black;
-    width: 15px;
+    width: 1.4vw;
 }
 
 .iconNight {
     color: white;
-    width: 15px;
+    width: 1.4vw;
 }
 
 .ball {
-    width: 22px;
-    height: 22px;
+    width: 1.8vw;
+    height: 1.8vw;
+    min-width: 11px;
+    min-height: 11px;
     position: absolute;
     background-color: #fff;
     top: 2px;
     left: 2px;
     border-radius: 50%;
     transition: transform 0.2s linear;
-}
-
-#checkboxContainer {
-    position: absolute;
-    right: 5px;
-    top: 5px;
 }

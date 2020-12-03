@@ -1,3 +1,49 @@
+//get all employess to the form option
+$("#insertDepartmentModal").on("shown.bs.modal", function(e) {
+    $("#colorpicker1").spectrum({
+        color: "#ff8810",
+    });
+    $("#colorpicker2").spectrum({
+        color: "#ff5500",
+    });
+    $.ajax({
+        url: "libs/php/getAll.php",
+        type: "GET",
+        dataType: "json",
+        success: function(result) {
+            result.data.map((item) => {
+                $("#employeesList").append(
+                    "<option>" + item.lastName + " " + item.firstName + "</option>"
+                );
+            });
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+        },
+    });
+});
+
+//toggle the visibility of icons in the menu
+$("#menuIconContainer1").on("mouseenter", function() {
+    $("#buildingPassive").css("display", "none");
+    $("#buildingActive").css("display", "flex");
+});
+
+$("#menuIconContainer1").on("mouseleave", function() {
+    $("#buildingPassive").css("display", "flex");
+    $("#buildingActive").css("display", "none");
+});
+
+$("#menuIconContainer2").on("mouseenter", function() {
+    $("#employeePassive").css("display", "none");
+    $("#employeeActive").css("display", "flex");
+});
+
+$("#menuIconContainer2").on("mouseleave", function() {
+    $("#employeePassive").css("display", "flex");
+    $("#employeeActive").css("display", "none");
+});
+
 // toggles the ligt/dark mode using checkbox
 $("#checkboxContainer").on("click", function() {
     let currentValue = $(".checkbox").is(":checked");
@@ -19,7 +65,6 @@ $.ajax({
     dataType: "json",
     success: function(result) {
         result.data.map((department, index) => {
-            console.log(department);
             const card =
                 "<article class='card' id=card" +
                 department.id +

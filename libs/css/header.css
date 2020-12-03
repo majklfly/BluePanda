@@ -1,8 +1,7 @@
 #headBackground {
-    width: 101vw;
-    left: -1vw;
+    width: 100%;
+    left: 0vw;
     top: -1vh;
-    max-width: 1500px;
     position: relative;
     transform: translate3d(0, 0, 0);
     opacity: 1;
@@ -13,8 +12,10 @@
     position: relative;
     top: 0;
     left: 0;
-    width: 100%;
-    max-width: 1500px;
+    width: 100vw;
+    max-width: 3000px;
+    margin-left: 50%;
+    transform: translate(-50%);
     z-index: 5;
 }
 
@@ -24,7 +25,7 @@ header {
     width: 100vw;
     position: fixed;
     top: 0;
-    left: -1vw;
+    left: 0;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -39,10 +40,8 @@ header h1 {
     color: var(--text-color);
 }
 
-#navbarButtonsContainer {
-    position: fixed;
-    top: 0;
-    right: 0;
-    opacity: 1 !important;
-    z-index: 10;
+@media only screen and (max-width: 500px) {
+    #headBackground {
+        top: 5vh;
+    }
 }

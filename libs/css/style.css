@@ -13,15 +13,58 @@ html.darkMode {
 
 body {
     background-image: var(--background-image);
+    margin: 0;
 }
 
 #cardsContainer {
     width: 90%;
+    max-width: 3000px;
     top: 30vw;
-    margin-left: 5%;
+    margin-left: 50%;
+    transform: translate(-50%);
     position: absolute;
     color: var(--text-color);
     z-index: -1;
+}
+
+#navbarButtonsContainer {
+    position: fixed;
+    width: 20vw;
+    height: auto;
+    min-width: 150px;
+    right: 2%;
+    top: 2%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    z-index: 10;
+}
+
+.menuIcon {
+    position: absolute;
+    font-size: clamp(15px, 2vw, 50px);
+    bottom: 8px;
+}
+
+#buildingActive {
+    display: none;
+}
+
+#employeeActive {
+    display: none;
+}
+
+#insertDepartmentDialog {
+    margin-top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#insertDepartmentContent {
+    padding: 10px;
 }
 
 .card {
