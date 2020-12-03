@@ -10,30 +10,38 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="libs/css/boostrap4.css">
+    <link rel="stylesheet" href="libs/css/header.css">
     <link rel="stylesheet" href="libs/css/style.css">
 </head>
 
 <body>
     <div id="navigationContainer">
-        <img src="libs/svg/headBackground.svg" alt="background" id="headBackground">
         <header>
             <h1>Blue Panda</h1>
+        </header>
+        <div id="navbarButtonsContainer">
             <div id="checkboxContainer">
                 <input type="checkbox" class="checkbox" id="checkbox">
                 <label htmlFor="checkbox" class="label">
-                    <img src="libs/img/sun.png" alt="sun" class="iconDay">
-                    <img src="libs/img/night.png" alt="night" class="iconNight">
-                <div class="ball"></div>
-    
-          </label>
+                            <img src="libs/img/sun.png" alt="sun" class="iconDay">
+                            <img src="libs/img/night.png" alt="night" class="iconNight">
+                        <div class="ball"></div>
+            
+                  </label>
             </div>
-        </header>
+        </div>
+
+
+        <img src="libs/svg/headBackground.svg" alt="background" id="headBackground">
     </div>
 
-    <section id="cardsContainer">
+    <section id="cardsContainer" class="card-columns">
     </section>
 
+
     <script src="libs/js/jquery-3.5.1.min.js"></script>
+    <script src="libs/js/bootstrap.js"></script>
     <script src="libs/js/headerFade.js"></script>
     <script src="libs/js/script.js"></script>
 </body>

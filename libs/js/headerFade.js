@@ -8,27 +8,14 @@
                 if (windowScrollTop <= windowHeight) {
                     var scrollPercent = windowScrollTop / windowHeight,
                         scrollTransform = scrollPercent * 150;
-                    // self.find("#headBackground").css({
-                    //     opacity: scrollPercent,
-                    // });
+
                     self.find("#headBackground").css({
-                        transform: "translate(0, -" + scrollTransform + "%)",
-                        opacity: 1 - scrollPercent,
+                        opacity: 1 - scrollPercent * 3,
                     });
-                    if (scrollTransform > 20) {
-                        self.find("header").css({
-                            position: "fixed",
-                            top: "0px",
-                            opacity: 1,
-                        });
-                    } else {
-                        self.find("header").css({
-                            position: "absolute",
-                            top: "auto",
-                            bottom: "2.5vh",
-                            opacity: 0.8,
-                        });
-                    }
+
+                    self.find("header").css({
+                        opacity: 0 + scrollPercent * 3,
+                    });
                 }
             });
         };

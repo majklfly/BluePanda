@@ -19,12 +19,17 @@ $.ajax({
     dataType: "json",
     success: function(result) {
         result.data.map((department, index) => {
+            console.log(department);
             const card =
                 "<article class='card' id=card" +
                 department.id +
-                " style='max-width: 18rem;'><div class='card-header'>" +
+                "><div class='card-title' style='background-image: linear-gradient(to bottom right, " +
+                department.firstColor +
+                ", " +
+                department.secondColor +
+                ")'><h4>" +
                 department.name +
-                "</div><div class='card-content' id='department" +
+                "</h4></div><div class='card-body' id='department" +
                 department.name +
                 "'></div></article>";
             $(card)
@@ -60,6 +65,16 @@ $.ajax({
     },
 });
 
+// setup the header and animation
 $(document).ready(function() {
-    $("#navigationContainer").heroFade();
+    $("body").heroFade();
+});
+
+// recalculates the position of card position
+var width = $(window).width();
+$(window).on("resize", function() {
+    if ($(this).width() !== width) {
+        width = $(this).width();
+        window.location.reload();
+    }
 });
