@@ -13,6 +13,8 @@
                         opacity: 1 - scrollPercent * 3,
                     });
 
+                    console.log(scrollPercent);
+
                     self.find("header").css({
                         opacity: 0 + scrollPercent * 3,
                     });

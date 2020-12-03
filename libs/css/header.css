@@ -9,7 +9,6 @@
 }
 
 #navigationContainer {
-    position: relative;
     top: 0;
     left: 0;
     width: 100vw;
@@ -21,22 +20,21 @@
 
 header {
     background-color: var(--background-color);
-    height: 60px;
+    height: 8vh;
+    min-height: 60px;
     width: 100vw;
     position: fixed;
     top: 0;
     left: 0;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    opacity: 0.8;
-    max-width: 1500px;
+    opacity: 1;
     z-index: 2;
 }
 
 header h1 {
     font-family: 'Roboto Slab', serif;
     margin-left: 3vw;
+    margin-top: 3%;
+    font-size: clamp(20px, 3vw, 80px);
     color: var(--text-color);
 }
 

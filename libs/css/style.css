@@ -30,21 +30,18 @@ body {
 #navbarButtonsContainer {
     position: fixed;
     width: 20vw;
-    height: auto;
     min-width: 150px;
     right: 2%;
-    top: 2%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
-    z-index: 10;
+    z-index: 100;
+    top: 3vw;
 }
 
 .menuIcon {
-    position: absolute;
     font-size: clamp(15px, 2vw, 50px);
-    bottom: 8px;
 }
 
 #buildingActive {
@@ -65,6 +62,8 @@ body {
 
 #insertDepartmentContent {
     padding: 10px;
+    width: inherit;
+    height: inherit;
 }
 
 .card {
@@ -96,8 +95,16 @@ body {
 }
 
 .card-title h4 {
-    padding-top: 10px;
-    font-size: clamp(15px, 2vw, 25px);
+    padding-top: 20px;
+    font-size: clamp(15px, 3vw, 40px);
+}
+
+.form {
+    padding: 15px;
+}
+
+.formLabel {
+    font-size: clamp(15px, 2vw, 30px);
 }
 
 .card-content-row {
@@ -110,7 +117,7 @@ body {
 }
 
 #card-content-item {
-    font-size: clamp(10px, 1.6vw, 18px);
+    font-size: clamp(15px, 1.8vw, 30px);
     text-align: center;
     width: 100%;
 }
