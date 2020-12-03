@@ -44,11 +44,11 @@ $.ajax({
                 success: function(result) {
                     result.data.map((item) => {
                         $("#department" + item.department).append(
-                            "<h3 id='card-content-item'>" +
+                            "<div class='card-content-row'><i class='fas fa-grip-vertical'></i><h4 id='card-content-item'>&nbsp" +
                             item.firstName +
                             " " +
                             item.lastName +
-                            "</h3>"
+                            "</h4></div>"
                         );
                     });
                 },
