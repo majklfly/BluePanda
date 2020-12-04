@@ -1,8 +1,5 @@
 <?php
 
-	// example use from browser
-	// http://localhost/companydirectory/libs/php/insertDepartment.php?name=New%20Department&locationID=1
-
 	// remove next two lines for production
 	
 	ini_set('display_errors', 'On');
@@ -30,11 +27,9 @@
 
 		exit;
 
-	}	
+	}
 
-	// $_REQUEST used for development / debugging. Remember to cange to $_POST for production
-
-	$query = 'INSERT INTO department (name, locationID, firstColor, secondColor) VALUES("' . $_POST['name'] . '",' . 14 . ',"' . $_POST['firstColor'] . '", "' . $_POST['secondColor'] . '")';
+	$query = 'INSERT INTO personnel (firstName, lastName, jobTitle, email, departmentID) VALUES("' . $_POST['firstName'] . '", "' . $_POST['lastName'] . '", "' . $_POST['jobTitle'] . '", "' . $_POST['email'] . '",' . $_POST['departmentID'] . ')';
 
 	$result = $conn->query($query);
 	
@@ -61,7 +56,7 @@
 	
 	mysqli_close($conn);
 
-	header("Location: ../../index.html?message=departmentInserted");
+	header("Location: ../../index.html?message=employeeInserted");
 
 	echo json_encode($output); 
 

@@ -1,3 +1,35 @@
+// draggable users between the departments
+const dragAndDropFunctionality = () => {
+    const draggables = document.querySelectorAll(".card-content-row");
+    console.log(draggables);
+    const containers = document.querySelectorAll(".card");
+
+    draggables.forEach((draggable) => {
+        draggable.addEventListener("dragstart", () => {
+            console.log("started");
+        });
+    });
+};
+
+// makes an ajax call to insert a new department to the database
+$("#insertNewEmployeeModal").on("shown.bs.modal", function(e) {
+    $.ajax({
+        url: "libs/php/getAllDepartments.php",
+        type: "GET",
+        dataType: "json",
+        success: function(result) {
+            result.data.map((item) => {
+                $("#newEmployeeDepartment").append(
+                    "<option value=" + item.id + ">" + item.name + "</option>"
+                );
+            });
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+        },
+    });
+});
+
 //get all employess to the form option
 $("#insertDepartmentModal").on("shown.bs.modal", function(e) {
     $("#colorpicker1").spectrum({
@@ -5,21 +37,6 @@ $("#insertDepartmentModal").on("shown.bs.modal", function(e) {
     });
     $("#colorpicker2").spectrum({
         color: "#ff5500",
-    });
-    $.ajax({
-        url: "libs/php/getAll.php",
-        type: "GET",
-        dataType: "json",
-        success: function(result) {
-            result.data.map((item) => {
-                $("#employeesList").append(
-                    "<option>" + item.lastName + " " + item.firstName + "</option>"
-                );
-            });
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log(jqXHR);
-        },
     });
 });
 
@@ -65,6 +82,7 @@ $.ajax({
     dataType: "json",
     success: function(result) {
         result.data.map((department, index) => {
+            const departmentN = department.name.replace(/ /g, "");
             const card =
                 "<article class='card' id=card" +
                 department.id +
@@ -74,36 +92,32 @@ $.ajax({
                 department.secondColor +
                 ")'><h4>" +
                 department.name +
-                "</h4></div><div class='card-body' id='department" +
-                department.name +
-                "'></div></article>";
-            $(card)
-                .appendTo("#cardsContainer")
-                .queue(function() {});
+                "</h4></div><div class='card-body' id=" +
+                departmentN +
+                "></div></article>";
+            $(card).appendTo("#cardsContainer");
         });
-        if ($(".card").length) {
-            $.ajax({
-                url: "libs/php/getAll.php",
-                type: "GET",
-                dataType: "json",
-                success: function(result) {
-                    result.data.map((item) => {
-                        $("#department" + item.department).append(
-                            "<div class='card-content-row'><i class='fas fa-grip-vertical'></i><h4 id='card-content-item'>&nbsp" +
-                            item.firstName +
-                            " " +
-                            item.lastName +
-                            "</h4></div>"
-                        );
-                    });
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    console.log(jqXHR);
-                },
-            });
-        }
-
-        console.log(result);
+        $.ajax({
+            url: "libs/php/getAll.php",
+            type: "GET",
+            dataType: "json",
+            success: function(result) {
+                result.data.map((item) => {
+                    const departmentName = item.department.replace(/ /g, "");
+                    $("#" + departmentName).append(
+                        "<div class='card-content-row' draggable='true'><i class='fas fa-grip-vertical'></i><h4 id='card-content-item'>&nbsp" +
+                        item.firstName +
+                        " " +
+                        item.lastName +
+                        "</h4></div>"
+                    );
+                });
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+            },
+        });
+        dragAndDropFunctionality();
     },
     error: function(jqXHR, textStatus, errorThrown) {
         console.log(jqXHR);

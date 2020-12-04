@@ -40,7 +40,7 @@ body {
 }
 
 .menuIcon {
-    font-size: clamp(20px, 3vw, 80px);
+    font-size: clamp(20px, 2vw, 40px);
 }
 
 #buildingActive {
@@ -51,9 +51,11 @@ body {
     display: none;
 }
 
+#insertDepartmentModal {
+    padding-top: 10%;
+}
+
 #insertDepartmentDialog {
-    margin-top: 50%;
-    transform: translateY(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -91,11 +93,14 @@ body {
     height: 80px;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card-title h4 {
-    padding-top: 20px;
-    font-size: clamp(15px, 3vw, 40px);
+    font-size: clamp(15px, 2.2vw, 35px);
 }
 
 .form {
@@ -113,6 +118,7 @@ body {
     border-bottom: 1px solid;
     margin-bottom: 3px;
     cursor: grab;
+    padding: 0.5rem;
 }
 
 #card-content-item {
