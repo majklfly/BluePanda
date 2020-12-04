@@ -125,6 +125,10 @@ body {
     width: 100%;
 }
 
+.fa-grip-vertical {
+    opacity: 0.5;
+}
+
 ::-webkit-scrollbar {
     width: 0px;
 }

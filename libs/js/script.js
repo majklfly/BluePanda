@@ -1,14 +1,47 @@
-// draggable users between the departments
+// draggable users between the departments functionality
 const dragAndDropFunctionality = () => {
     const draggables = document.querySelectorAll(".card-content-row");
-    console.log(draggables);
-    const containers = document.querySelectorAll(".card");
+    const containers = document.querySelectorAll(".card-body");
 
     draggables.forEach((draggable) => {
         draggable.addEventListener("dragstart", () => {
-            console.log("started");
+            draggable.classList.add("dragging");
+        });
+
+        draggable.addEventListener("dragend", () => {
+            draggable.classList.remove("dragging");
         });
     });
+
+    containers.forEach((container) => {
+        container.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            const afterElement = getDragAfterElement(container, e.clientY);
+            console.log(afterElement);
+            const draggable = document.querySelector(".dragging");
+            container.appendChild(draggable);
+        });
+    });
+
+    const getDragAfterElement = (container, y) => {
+        const draggableElements = [
+            ...container.querySelectorAll(".card-content-row:not(.dragging)"),
+        ];
+        draggableElements.reduce(
+            (closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = y - box.top - box.height / 2;
+                console.log(closest.offset);
+                if (offset < 0 && offset > closest.offset) {
+                    return { offset: offset, element: child };
+                } else {
+                    closest;
+                }
+            }, {
+                offset: Number.NEGATIVE_INFINITY,
+            }
+        ).element;
+    };
 };
 
 // makes an ajax call to insert a new department to the database
@@ -37,6 +70,22 @@ $("#insertDepartmentModal").on("shown.bs.modal", function(e) {
     });
     $("#colorpicker2").spectrum({
         color: "#ff5500",
+    });
+    $.ajax({
+        url: "libs/php/getAllLocations.php",
+        type: "GET",
+        dataType: "json",
+        success: function(result) {
+            console.log(result);
+            result.data.map((item) => {
+                $("#departmentLocation").append(
+                    "<option value=" + item.id + ">" + item.name + "</option>"
+                );
+            });
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+        },
     });
 });
 
@@ -112,12 +161,12 @@ $.ajax({
                         "</h4></div>"
                     );
                 });
+                dragAndDropFunctionality();
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR);
             },
         });
-        dragAndDropFunctionality();
     },
     error: function(jqXHR, textStatus, errorThrown) {
         console.log(jqXHR);

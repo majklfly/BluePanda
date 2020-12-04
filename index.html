@@ -22,6 +22,9 @@
         <h1>Blue Panda</h1>
     </header>
     <div id="navbarButtonsContainer">
+        <div>
+            <i class="far fa-chart-bar menuIcon"></i>
+        </div>
         <div id="menuIconContainer1" data-toggle="modal" data-target="#insertDepartmentModal">
             <i class="far fa-building menuIcon" id="buildingPassive"></i>
             <i class="fas fa-building menuIcon" id="buildingActive"></i>
@@ -57,6 +60,10 @@
                     <div class="form-group">
                         <label for="exampleFormControlInput1" class="formLabel">Name of Department</label>
                         <input type="text" name="name" class="form-control" id="exampleFormControlInput1">
+                    </div>
+                    <div class="form-group">
+                        <label for="departmentLocation" class="formLabel">Location</label>
+                        <select name="departmentLocation" class="form-control" id="departmentLocation"></select>
                     </div>
                     <div class="form-group colorPicker">
                         <label for="colorpicker1" class="formLabel">First Color</label>
