@@ -55,10 +55,8 @@ body {
     padding-top: 10%;
 }
 
-#insertDepartmentDialog {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+#insertNewEmployeeModal {
+    padding-top: 10%;
 }
 
 #insertDepartmentContent {
