@@ -42,8 +42,6 @@
 
     
     $query2 = 'UPDATE personnel SET departmentID = ' . $id['id'] . ' WHERE lastName = "' . $_REQUEST['lastName'] . '"';
-    
-    print_r($query2);
 
     $result = $conn->query($query2);
 	

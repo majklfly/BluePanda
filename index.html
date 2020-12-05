@@ -23,7 +23,7 @@
     </header>
     <div id="navbarButtonsContainer">
         <div>
-            <i class="far fa-chart-bar menuIcon"></i>
+            <i class="far fa-chart-bar menuIcon" data-toggle="modal" data-target="#graphsModal"></i>
         </div>
         <div id="menuIconContainer1" data-toggle="modal" data-target="#insertDepartmentModal">
             <i class="far fa-building menuIcon" id="buildingPassive"></i>
@@ -110,6 +110,24 @@
                         <button type="submit" class="btn btn-primary">Create new Employee</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for get and edit details about the employee -->
+    <div class="modal" tabindex="-1" role="dialog" id="employeeDetailModal">
+        <div class="modal-dialog" role="document" id="employeeDetailDialog">
+            <div class="modal-content" id="employeeDetailContent">
+                <h1>employee details</h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for get tge graphs of the company -->
+    <div class="modal" tabindex="-1" role="dialog" id="graphsModal">
+        <div class="modal-dialog" role="document" id="graphsDialog">
+            <div class="modal-content" id="graphsContent">
+                <h1>graphs modal</h1>
             </div>
         </div>
     </div>

@@ -41,6 +41,7 @@ body {
 
 .menuIcon {
     font-size: clamp(20px, 2vw, 40px);
+    cursor: pointer;
 }
 
 #buildingActive {
@@ -73,6 +74,7 @@ body {
     scrollbar-width: 1px;
     opacity: 0.8;
     box-shadow: -2px 2px 10px 10px darkgrey;
+    z-index: 1;
 }
 
 .card-body {
@@ -113,8 +115,8 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
-    border-bottom: 1px solid;
-    margin-bottom: 3px;
+    justify-self: center;
+    border-bottom: 1px solid rgba(211, 211, 211, 0.5);
     cursor: grab;
     padding: 0.5rem;
 }
@@ -127,6 +129,15 @@ body {
 
 .fa-grip-vertical {
     opacity: 0.5;
+}
+
+.fa-info-circle {
+    cursor: pointer;
+}
+
+.ui-sortable-helper {
+    background-color: darkgrey;
+    z-index: 15;
 }
 
 ::-webkit-scrollbar {

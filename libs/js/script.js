@@ -10,7 +10,7 @@ const dragAndDropFunctionality = (selectors) => {
         receive: function(event, ui) {
             const name = $(ui.item).attr("id");
             const lastName = name.split("_")[1];
-            console.log(event);
+            console.log(ui.element);
             $.ajax({
                 url: "libs/php/employeeChangesDepartment.php",
                 type: "POST",
@@ -150,7 +150,7 @@ $.ajax({
                         item.firstName +
                         " " +
                         item.lastName +
-                        "</h4></div>"
+                        "</h4><i class='fas fa-info-circle' data-toggle='modal' data-target='#employeeDetailModal'></i></div>"
                     );
                 });
                 let unique = [...new Set(tableSelectors)];
