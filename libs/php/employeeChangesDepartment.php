@@ -32,11 +32,20 @@
 
 	}	
 
-	// $_REQUEST used for development / debugging. Remember to cange to $_POST for production
+    // $_REQUEST used for development / debugging. Remember to cange to $_POST for production
 
-	$query = 'INSERT INTO department (name, locationID, firstColor, secondColor) VALUES("' . $_POST['name'] . '",' . $_POST['departmentLocation'] . ',"' . $_POST['firstColor'] . '", "' . $_POST['secondColor'] . '")';
+    $query = 'SELECT id FROM department WHERE name = "' . $_REQUEST['departmentName'] .'"';
 
-	$result = $conn->query($query);
+    $departmentId = $conn->query($query);
+    
+    $id = mysqli_fetch_assoc($departmentId);
+
+    
+    $query2 = 'UPDATE personnel SET departmentID = ' . $id['id'] . ' WHERE lastName = "' . $_REQUEST['lastName'] . '"';
+    
+    print_r($query2);
+
+    $result = $conn->query($query2);
 	
 	if (!$result) {
 
@@ -58,11 +67,9 @@
 	$output['status']['description'] = "success";
 	$output['status']['returnedIn'] = (microtime(true) - $executionStartTime) / 1000 . " ms";
 	$output['data'] = $result;
+
+	header('Content-Type: application/json; charset=UTF-8');
 	
 	mysqli_close($conn);
 
-	header("Location: ../../index.html?message=departmentInserted");
-
 	echo json_encode($output); 
-
-?>

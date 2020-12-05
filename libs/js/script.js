@@ -1,47 +1,32 @@
 // draggable users between the departments functionality
-const dragAndDropFunctionality = () => {
-    const draggables = document.querySelectorAll(".card-content-row");
-    const containers = document.querySelectorAll(".card-body");
-
-    draggables.forEach((draggable) => {
-        draggable.addEventListener("dragstart", () => {
-            draggable.classList.add("dragging");
-        });
-
-        draggable.addEventListener("dragend", () => {
-            draggable.classList.remove("dragging");
-        });
+const dragAndDropFunctionality = (selectors) => {
+    let selectorsString = "";
+    selectors.map((item) => {
+        selectorsString += item + ", ";
     });
-
-    containers.forEach((container) => {
-        container.addEventListener("dragover", (e) => {
-            e.preventDefault();
-            const afterElement = getDragAfterElement(container, e.clientY);
-            console.log(afterElement);
-            const draggable = document.querySelector(".dragging");
-            container.appendChild(draggable);
-        });
+    const cleanedSelectors = selectorsString.slice(0, -2);
+    $(cleanedSelectors).sortable({
+        connectWith: ".card-body",
+        stop: function(event, ui) {
+            const name = $(ui.item).attr("id");
+            const lastName = name.split("_")[1];
+            $.ajax({
+                url: "libs/php/employeeChangesDepartment.php",
+                type: "POST",
+                dataType: "json",
+                data: {
+                    lastName: lastName,
+                    departmentName: event.target.id.replace("_", " "),
+                },
+                success: function(result) {
+                    console.log(result);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR);
+                },
+            });
+        },
     });
-
-    const getDragAfterElement = (container, y) => {
-        const draggableElements = [
-            ...container.querySelectorAll(".card-content-row:not(.dragging)"),
-        ];
-        draggableElements.reduce(
-            (closest, child) => {
-                const box = child.getBoundingClientRect();
-                const offset = y - box.top - box.height / 2;
-                console.log(closest.offset);
-                if (offset < 0 && offset > closest.offset) {
-                    return { offset: offset, element: child };
-                } else {
-                    closest;
-                }
-            }, {
-                offset: Number.NEGATIVE_INFINITY,
-            }
-        ).element;
-    };
 };
 
 // makes an ajax call to insert a new department to the database
@@ -131,7 +116,7 @@ $.ajax({
     dataType: "json",
     success: function(result) {
         result.data.map((department, index) => {
-            const departmentN = department.name.replace(/ /g, "");
+            const departmentN = department.name.replace(/ /g, "_");
             const card =
                 "<article class='card' id=card" +
                 department.id +
@@ -151,17 +136,24 @@ $.ajax({
             type: "GET",
             dataType: "json",
             success: function(result) {
+                let tableSelectors = [];
                 result.data.map((item) => {
-                    const departmentName = item.department.replace(/ /g, "");
+                    const departmentName = item.department.replace(/ /g, "_");
+                    tableSelectors.push("#" + departmentName);
                     $("#" + departmentName).append(
-                        "<div class='card-content-row' draggable='true'><i class='fas fa-grip-vertical'></i><h4 id='card-content-item'>&nbsp" +
+                        "<div class='card-content-row' id=" +
+                        item.firstName +
+                        "_" +
+                        item.lastName +
+                        "><i class='fas fa-grip-vertical'></i><h4 id='card-content-item'>&nbsp" +
                         item.firstName +
                         " " +
                         item.lastName +
                         "</h4></div>"
                     );
                 });
-                dragAndDropFunctionality();
+                let unique = [...new Set(tableSelectors)];
+                dragAndDropFunctionality(unique);
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR);
