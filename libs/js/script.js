@@ -7,9 +7,10 @@ const dragAndDropFunctionality = (selectors) => {
     const cleanedSelectors = selectorsString.slice(0, -2);
     $(cleanedSelectors).sortable({
         connectWith: ".card-body",
-        stop: function(event, ui) {
+        receive: function(event, ui) {
             const name = $(ui.item).attr("id");
             const lastName = name.split("_")[1];
+            console.log(event);
             $.ajax({
                 url: "libs/php/employeeChangesDepartment.php",
                 type: "POST",
