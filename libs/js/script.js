@@ -1,3 +1,22 @@
+//get details of each employee
+$("#employeeDetailModal").on("shown.bs.modal", function(e) {
+    const name = $(e.relatedTarget).data("id");
+    $.ajax({
+        url: "libs/php/employeeDetail.php",
+        type: "GET",
+        dataType: "json",
+        data: {
+            lastName: name,
+        },
+        success: function(result) {
+            console.log(result);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+        },
+    });
+});
+
 // draggable users between the departments functionality
 const dragAndDropFunctionality = (selectors) => {
     let selectorsString = "";
@@ -150,7 +169,9 @@ $.ajax({
                         item.firstName +
                         " " +
                         item.lastName +
-                        "</h4><i class='fas fa-info-circle' data-toggle='modal' data-target='#employeeDetailModal'></i></div>"
+                        "</h4><i class='fas fa-info-circle' data-toggle='modal' data-target='#employeeDetailModal' data-id=" +
+                        item.lastName +
+                        "></i></div>"
                     );
                 });
                 let unique = [...new Set(tableSelectors)];
