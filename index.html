@@ -23,6 +23,10 @@
         <h1>Blue Panda</h1>
     </header>
     <div id="navbarButtonsContainer">
+        <div id="menuIconContainer3" data-toggle="modal" data-target="#locationModal">
+            <i class="far fa-compass menuIcon" id="locationPassive"></i>
+            <i class="fas fa-compass menuIcon" id="locationActive"></i>
+        </div>
         <div>
             <i class="far fa-chart-bar menuIcon" data-toggle="modal" data-target="#graphsModal"></i>
         </div>
@@ -33,6 +37,10 @@
         <div id="menuIconContainer2" data-toggle="modal" data-target="#insertNewEmployeeModal">
             <i class="far fa-user menuIcon" id="employeePassive"></i>
             <i class="fas fa-user menuIcon" id="employeeActive"></i>
+        </div>
+        <div id="menuIconContainer4">
+            <i class="far fa-list-alt menuIcon" id="listPassive"></i>
+            <i class="fas fa-list-alt menuIcon" id="listActive"></i>
         </div>
         <div id="checkboxContainer">
             <input type="checkbox" class="checkbox" id="checkbox">
@@ -52,6 +60,8 @@
 
     <section id="cardsContainer" class="card-columns">
     </section>
+
+    <div class="list-group employeesList"></div>
 
     <!-- Modal for insert new Department -->
     <div class="modal" tabindex="-1" role="dialog" id="insertDepartmentModal">
@@ -121,29 +131,53 @@
             <div class="modal-content" id="employeeDetailContent">
                 <h1>Employee details</h1>
                 <img id="profilePicture" src="libs/img/userPicture.svg" alt="profilePic">
-                <div class="userDetailsRow">
-                    <h4>First Name:</h4>
-                    <h3 id="employeeFirstName"></h3>
+                <div id="userDetailsContainer">
+                    <div class="userDetailsRow">
+                        <h4>First Name:</h4>
+                        <h3 id="employeeFirstName"></h3>
+                    </div>
+                    <div class="userDetailsRow">
+                        <h4>Last Name:</h4>
+                        <h3 id="employeeLastName"></h3>
+                    </div>
+                    <div class="userDetailsRow">
+                        <h4>Email:</h4>
+                        <h3 id="employeeEmail"></h3>
+                    </div>
+                    <div class="userDetailsRow">
+                        <h4>Job title:</h4>
+                        <h3 id="employeeJobTitle">Manager</h3>
+                    </div>
+                    <div class="userDetailsRow">
+                        <h4>Location:</h4>
+                        <h3 id="employeeLocation"></h3>
+                    </div>
                 </div>
-                <div class="userDetailsRow">
-                    <h4>Last Name:</h4>
-                    <h3 id="employeeLastName"></h3>
-                </div>
-                <div class="userDetailsRow">
-                    <h4>Email:</h4>
-                    <h3 id="employeeEmail"></h3>
-                </div>
-                <div class="userDetailsRow">
-                    <h4>Job title:</h4>
-                    <h3 id="employeeJobTitle">Manager</h3>
-                </div>
-                <div class="userDetailsRow">
-                    <h4>Location:</h4>
-                    <h3 id="employeeLocation"></h3>
+                <div id="userEditContainer">
+                    <form id="editUserForm" method="POST" action='./libs/php/editEmployee.php' role="form">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">First Name</label>
+                            <input type="text" class="form-control" placeholder="Update First Name" name="firstName">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Last Name</label>
+                            <input type="text" class="form-control" placeholder="Update Last Name" name="lastName">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label>
+                            <input type="email" class="form-control" placeholder="Update email" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Job Title</label>
+                            <input type="email" class="form-control" placeholder="Update Job Title" name="jobTitle">
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="SubmitProfileChange">Update</button>
+                        <small id="emailHelp" class="form-text text-muted">Only the filled field will be updated.</small>
+                    </form>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="employeeEditButton">Show edit options</button>
                     <button type="submit" class="btn btn-danger" id="employeeDeleteButton">Delete the employee</button>
-                    <h7>*pressing this button will permanently delete the profile</h7>
                 </div>
             </div>
         </div>
@@ -157,11 +191,11 @@
                 <div class="graphsContainer">
                     <div>
                         <h5>Number of employees in each country:</h5>
-                        <canvas id="locationChart" width="400" height="400"></canvas>
+                        <canvas id="locationChart" width="100%" height="80%"></canvas>
                     </div>
                     <div>
                         <h5>Number of employees depends on department:</h5>
-                        <canvas id="departmentChart" width="400" height="400"></canvas>
+                        <canvas id="departmentChart" width="100%" height="80%"></canvas>
                     </div>
                 </div>
 
@@ -169,12 +203,22 @@
         </div>
     </div>
 
+    <!-- modal with different content after interaction with the database -->
     <div class="modal" tabindex="-1" role="dialog" id="messageModal">
         <div class="modal-dialog" role="document" id="messageDialog">
             <div class="modal-content" id="messageContent">
                 <h1 id="message">message</h1>
                 <div id="messageAnimationContainer">
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal to show form to insert a new location -->
+    <div class="modal" tabindex="-1" role="dialog" id="locationModal">
+        <div class="modal-dialog" role="document" id="locationDialog">
+            <div class="modal-content" id="locationContent">
+                <h1>Insert new Location</h1>
             </div>
         </div>
     </div>

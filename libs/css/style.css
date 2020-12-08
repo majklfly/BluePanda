@@ -16,9 +16,35 @@ body {
     margin: 0;
 }
 
-h7 {
-    font-size: clamp(10px, 1vw, 20px);
-    opacity: 0.5;
+.employeesList {
+    width: 90%;
+    margin-left: 50%;
+    transform: translate(-50%);
+    position: absolute;
+    top: 40vw;
+}
+
+.employeeListRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    cursor: pointer;
+    opacity: 0.7;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+.employeeListItemShort {
+    width: 10%;
+    text-align: center;
+    overflow: scroll;
+}
+
+.employeeListItemLong {
+    width: 30%;
+    text-align: start;
+    overflow: scroll;
 }
 
 #cardsContainer {
@@ -57,11 +83,27 @@ h7 {
     display: none;
 }
 
+#locationActive {
+    display: none;
+}
+
+#listActive {
+    display: none;
+}
+
+.employeesList {
+    display: none;
+}
+
 #insertDepartmentModal {
     padding-top: 10%;
 }
 
 #insertNewEmployeeModal {
+    padding-top: 10%;
+}
+
+#locationModal {
     padding-top: 10%;
 }
 
@@ -73,6 +115,7 @@ h7 {
 
 .card {
     border-radius: 10px;
+    min-height: 200px;
     margin: 20px;
     position: relative;
     background-color: var(--background-color);
@@ -214,16 +257,30 @@ h7 {
 .graphsContainer {
     display: flex;
     flex-wrap: wrap;
-    display: row;
+    display: column;
+    justify-content: center;
 }
 
 .userDetailsRow h4 {
-    font-size: clamp(12px, 1.9vw, 25px);
+    font-size: clamp(10px, 1.2vw, 15px);
     text-decoration: underline;
 }
 
 .userDetailsRow h3 {
     font-size: clamp(18px, 3.7vw, 30px);
+}
+
+#userEditContainer {
+    display: none;
+}
+
+#editUserForm {
+    width: 100%;
+}
+
+#SubmitProfileChange {
+    margin: 5%;
+    float: right;
 }
 
 @media only screen and (min-width: 1500px) {

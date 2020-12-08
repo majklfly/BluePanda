@@ -1,3 +1,59 @@
+//shows/hides the list of all employees
+$("#menuIconContainer4").on("click", function(e) {
+    if ($("#cardsContainer").css("display") === "block") {
+        $("#listActive").css("display", "flex");
+        $("#listPassive").css("display", "none");
+        $("#cardsContainer").css("display", "none");
+        $(".employeesList").css("display", "block");
+        $.ajax({
+            url: "libs/php/getAll.php",
+            type: "GET",
+            dataType: "json",
+            data: {
+                lastName: name,
+            },
+            success: function(result) {
+                result.data.map((item) => {
+                    $(".employeesList").append(
+                        "<div class='list-group-item list-group-item-action employeeListRow'><p class='employeeListItemShort'>" +
+                        item.firstName +
+                        "</p><p class='employeeListItemShort'>" +
+                        item.lastName +
+                        "</p><p class='employeeListItemLong'>" +
+                        item.email +
+                        "</p><p class='employeeListItemLong'>" +
+                        item.department +
+                        "</p><p class='employeeListItemShort'>" +
+                        item.location +
+                        "</p></div>"
+                    );
+                });
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(jqXHR);
+            },
+        });
+    } else {
+        $("#listActive").css("display", "none");
+        $("#listPassive").css("display", "flex");
+        $("#cardsContainer").css("display", "block");
+        $(".employeesList").css("display", "none");
+    }
+});
+
+// show form to edit the employee on a click
+$("#employeeEditButton").on("click", function() {
+    if ($("#userEditContainer").css("display") === "none") {
+        $("#userDetailsContainer").css("display", "none");
+        $("#userEditContainer").css("display", "flex");
+        $("#employeeEditButton").html("Hide edit options");
+    } else {
+        $("#userDetailsContainer").css("display", "block");
+        $("#userEditContainer").css("display", "none");
+        $("#employeeEditButton").html("Show edit options");
+    }
+});
+
 //removing URL parameters without refreshing page
 const cleaningURLParameters = () => {
     // get the string following the ?
@@ -62,9 +118,26 @@ if (message) {
     }
 }
 
-const renderPieChart = (London, Paris, New_York, Munich, Rome) => {
-    console.log("london", London);
-    //graph modal setting
+const renderPieChart = (result) => {
+    let London = 0;
+    let Paris = 0;
+    let New_York = 0;
+    let Munich = 0;
+    let Rome = 0;
+    result.data.map((item) => {
+        switch (item.location) {
+            case "London":
+                London += 1;
+            case "Paris":
+                Paris++;
+            case "New York":
+                New_York++;
+            case "Munich":
+                Munich++;
+            case "Rome":
+                Rome++;
+        }
+    });
     var ctx = document.getElementById("locationChart");
     var myChart = new Chart(ctx, {
         type: "pie",
@@ -107,44 +180,68 @@ const renderPieChart = (London, Paris, New_York, Munich, Rome) => {
     });
 };
 
-const renderBarChart = (London, Paris, New_York, Munich, Rome) => {
-    console.log("london", London);
-    //graph modal setting
-    var ctx = document.getElementById("departmentChart");
-    var myChart = new Chart(ctx, {
-        type: "bar",
-        data: {
-            labels: ["London", "Paris", "New York", "Munich", "Rome"],
-            datasets: [{
-                label: "# of Employees",
-                data: [London, Paris, New_York, Munich, Rome],
-                backgroundColor: [
-                    "rgba(255, 99, 132, 0.2)",
-                    "rgba(54, 162, 235, 0.2)",
-                    "rgba(255, 206, 86, 0.2)",
-                    "rgba(75, 192, 192, 0.2)",
-                    "rgba(153, 102, 255, 0.2)",
-                    "rgba(255, 159, 64, 0.2)",
-                ],
-                borderColor: "rgba(0, 0, 0, 0)",
-            }, ],
-        },
-        options: {
-            scales: {
-                xAxes: [{}],
-                yAxes: [{}],
-            },
-        },
+const renderBarChart = (result) => {
+    const keys = [];
+    const values = [];
+    const departmentsArray = [];
+    result.data.map((item) => {
+        departmentsArray.push(item.department);
     });
+    if (departmentsArray) {
+        var arr = departmentsArray;
+        var uniqs = arr.reduce((acc, val) => {
+            acc[val] = acc[val] === undefined ? 1 : (acc[val] += 1);
+            return acc;
+        }, {});
+        for (const [key, value] of Object.entries(uniqs)) {
+            keys.push(key);
+            values.push(value);
+        }
+        var ctx = document.getElementById("departmentChart");
+        var myChart = new Chart(ctx, {
+            type: "bar",
+            data: {
+                labels: keys,
+                datasets: [{
+                    label: "# of Employees",
+                    data: values,
+                    backgroundColor: [
+                        "rgba(255, 99, 132, 0.2)",
+                        "rgba(54, 162, 235, 0.2)",
+                        "rgba(255, 206, 86, 0.2)",
+                        "rgba(75, 192, 192, 0.2)",
+                        "rgba(153, 102, 255, 0.2)",
+                        "rgba(255, 159, 64, 0.2)",
+                        "rgba(255, 150, 132, 0.2)",
+                        "rgba(54, 162, 24, 0.2)",
+                        "rgba(172, 206, 86, 0.2)",
+                        "rgba(75, 140, 192, 0.2)",
+                        "rgba(72, 102, 255, 0.2)",
+                        "rgba(255, 159, 210, 0.2)",
+                        "rgba(172, 106, 86, 0.2)",
+                        "rgba(183, 140, 192, 0.2)",
+                        "rgba(72, 255, 255, 0.2)",
+                        "rgba(255, 159, 52, 0.2)",
+                    ],
+                    borderColor: "rgba(0, 0, 0, 0)",
+                }, ],
+            },
+            options: {
+                scales: {
+                    xAxes: [{}],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                        },
+                    }, ],
+                },
+            },
+        });
+    }
 };
 
 //render statistic data of the company
 $("#graphsModal").on("shown.bs.modal", function(e) {
-    let London = 0;
-    let Paris = 0;
-    let New_York = 0;
-    let Munich = 0;
-    let Rome = 0;
     $.ajax({
         url: "libs/php/getAll.php",
         type: "GET",
@@ -153,22 +250,8 @@ $("#graphsModal").on("shown.bs.modal", function(e) {
             lastName: name,
         },
         success: function(result) {
-            result.data.map((item) => {
-                switch (item.location) {
-                    case "London":
-                        London += 1;
-                    case "Paris":
-                        Paris++;
-                    case "New York":
-                        New_York++;
-                    case "Munich":
-                        Munich++;
-                    case "Rome":
-                        Rome++;
-                }
-            });
-            renderPieChart(London, Paris, New_York, Munich, Rome);
-            renderBarChart(London, Paris, New_York, Munich, Rome);
+            renderPieChart(result);
+            renderBarChart(result);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);
@@ -229,31 +312,38 @@ $("#employeeDetailModal").on("hidden.bs.modal", function() {
 // draggable users between the departments functionality
 const dragAndDropFunctionality = (selectors) => {
     let selectorsString = "";
-    selectors.map((item) => {
-        selectorsString += item + ", ";
-    });
-    const cleanedSelectors = selectorsString.slice(0, -2);
-    $(cleanedSelectors).sortable({
-        connectWith: ".card-body",
-        receive: function(event, ui) {
-            const name = $(ui.item).attr("id");
-            const lastName = name.split("_")[1];
-            console.log(ui.element);
-            $.ajax({
-                url: "libs/php/employeeChangesDepartment.php",
-                type: "POST",
-                dataType: "json",
-                data: {
-                    lastName: lastName,
-                    departmentName: event.target.id.replace("_", " "),
-                },
-                success: function(result) {
-                    console.log(result);
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    console.log(jqXHR);
+    $.ajax({
+        url: "libs/php/getAllDepartments.php",
+        type: "GET",
+        dataType: "json",
+        success: function(result) {
+            result.data.map((item) => {
+                selectorsString += "#" + item.name.replace(/ /g, "_") + ", ";
+            });
+            const cleanedSelectors = selectorsString.slice(0, -2);
+            $(cleanedSelectors).sortable({
+                connectWith: ".card-body",
+                receive: function(event, ui) {
+                    const name = $(ui.item).attr("id");
+                    const lastName = name.split("_")[1];
+                    $.ajax({
+                        url: "libs/php/employeeChangesDepartment.php",
+                        type: "POST",
+                        dataType: "json",
+                        data: {
+                            lastName: lastName,
+                            departmentName: event.target.id.replace("_", " "),
+                        },
+                        success: function(result) {},
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log(jqXHR);
+                        },
+                    });
                 },
             });
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
         },
     });
 };
@@ -322,6 +412,16 @@ $("#menuIconContainer2").on("mouseenter", function() {
 $("#menuIconContainer2").on("mouseleave", function() {
     $("#employeePassive").css("display", "flex");
     $("#employeeActive").css("display", "none");
+});
+
+$("#menuIconContainer3").on("mouseenter", function() {
+    $("#locationPassive").css("display", "none");
+    $("#locationActive").css("display", "flex");
+});
+
+$("#menuIconContainer3").on("mouseleave", function() {
+    $("#locationPassive").css("display", "flex");
+    $("#locationActive").css("display", "none");
 });
 
 // toggles the ligt/dark mode using checkbox
