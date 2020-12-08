@@ -89,15 +89,15 @@
                 <form id="inserNewEmployeeForm" class="form" method="POST" action='./libs/php/insertNewEmployee.php' role="form">
                     <div class="form-group">
                         <label for="newEmployeeFirstName" class="formLabel">First Name</label>
-                        <input type="text" name="firstName" class="form-control" id="newEmployeeFirstName">
+                        <input type="text" name="firstName" class="form-control" id="newEmployeeFirstName" required>
                     </div>
                     <div class="form-group">
                         <label for="newEmployeeLastName" class="formLabel">Last Name</label>
-                        <input type="text" name="lastName" class="form-control" id="newEmployeeLastName">
+                        <input type="text" name="lastName" class="form-control" id="newEmployeeLastName" required>
                     </div>
                     <div class="form-group">
                         <label for="newEmployeeEmail" class="formLabel">Email</label>
-                        <input type="text" name="email" class="form-control" id="newEmployeeEmail">
+                        <input type="email" name="email" class="form-control" id="newEmployeeEmail" required>
                     </div>
                     <div class="form-group">
                         <label for="newEmployeeJobTitle" class="formLabel">Job Title</label>
