@@ -144,6 +144,63 @@ body {
     width: 0px;
 }
 
+#profilePicture {
+    position: absolute;
+    width: 10vw;
+    height: auto;
+    right: 3vw;
+    top: 3vw;
+    opacity: 0.1;
+}
+
+#employeeDetailContent {
+    padding: 2vw;
+    background-color: var(--background-color);
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text-color);
+}
+
+#employeeDetailContent>h1 {
+    font-size: clamp(15px, 4vw, 35px);
+    text-align: center;
+    font-weight: 1000;
+    margin-bottom: 10%;
+    margin-top: 3%;
+}
+
+#messageContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40%;
+    padding: 2vw;
+    background-color: var(--background-color);
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text-color);
+}
+
+#message {
+    text-align: center;
+}
+
+#graphsContent {
+    padding: 2vw;
+    margin-top: 40%;
+}
+
+#graphsContent h1 {
+    text-align: center;
+}
+
+.userDetailsRow h4 {
+    font-size: clamp(12px, 1.9vw, 25px);
+    text-decoration: underline;
+}
+
+.userDetailsRow h3 {
+    font-size: clamp(18px, 3.7vw, 30px);
+}
+
 @media only screen and (min-width: 1500px) {
     #navigationContainer {
         margin-left: 50%;

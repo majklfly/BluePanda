@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="libs/css/spectrum.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="libs/css/chart.css">
     <link rel="stylesheet" href="libs/css/header.css">
     <link rel="stylesheet" href="libs/css/style.css">
 </head>
@@ -119,49 +120,56 @@
         <div class="modal-dialog" role="document" id="employeeDetailDialog">
             <div class="modal-content" id="employeeDetailContent">
                 <h1>Employee details</h1>
-                <img src="" alt="">
-                <div>
-                    <h4>Employee Number: </h4>
-                    <h3>Crinchton</h3>
-                </div>
-                <div>
+                <img id="profilePicture" src="libs/img/userPicture.svg" alt="profilePic">
+                <div class="userDetailsRow">
                     <h4>first Name:</h4>
-                    <h3>Crinchton</h3>
+                    <h3 id="employeeFirstName"></h3>
                 </div>
-                <div>
+                <div class="userDetailsRow">
                     <h4>last Name:</h4>
-                    <h3>McAndrew</h3>
+                    <h3 id="employeeLastName"></h3>
                 </div>
-                <div>
+                <div class="userDetailsRow">
                     <h4>Email:</h4>
-                    <h3>cmcandrew7@zdnet.com</h3>
+                    <h3 id="employeeEmail"></h3>
                 </div>
-                <div>
+                <div class="userDetailsRow">
                     <h4>Job title:</h4>
-                    <h3>Manager</h3>
+                    <h3 id="employeeJobTitle">Manager</h3>
                 </div>
-                <div>
+                <div class="userDetailsRow">
                     <h4>Location:</h4>
-                    <h3>London</h3>
+                    <h3 id="employeeLocation"></h3>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Modal for get tge graphs of the company -->
-        <div class="modal" tabindex="-1" role="dialog" id="graphsModal">
-            <div class="modal-dialog" role="document" id="graphsDialog">
-                <div class="modal-content" id="graphsContent">
-                    <h1>graphs modal</h1>
-                </div>
+    <!-- Modal for get the graphs of the company -->
+    <div class="modal" tabindex="-1" role="dialog" id="graphsModal">
+        <div class="modal-dialog" role="document" id="graphsDialog">
+            <div class="modal-content" id="graphsContent">
+                <h1>Graphic Presentation</h1>
+                <canvas id="myChart" width="400" height="400"></canvas>
             </div>
         </div>
+    </div>
 
-        <script src="libs/js/jquery-3.5.1.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-        <script src="libs/js/spectrum.js"></script>
-        <script src="libs/js/bootstrap.js"></script>
-        <script src="libs/js/headerFade.js"></script>
-        <script src="libs/js/script.js"></script>
+    <div class="modal" tabindex="-1" role="dialog" id="messageModal">
+        <div class="modal-dialog" role="document" id="messageDialog">
+            <div class="modal-content" id="messageContent">
+                <h1 id="message">message</h1>
+            </div>
+        </div>
+    </div>
+
+    <script src="libs/js/jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="libs/js/spectrum.js"></script>
+    <script src="libs/js/chart.js"></script>
+    <script src="libs/js/bootstrap.js"></script>
+    <script src="libs/js/headerFade.js"></script>
+    <script src="libs/js/script.js"></script>
 </body>
 
 </html>

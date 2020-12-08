@@ -1,3 +1,78 @@
+//graph modal setting
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: "bar",
+    data: {
+        labels: ["London", "Paris", "New York", "Munich", "Rome"],
+        datasets: [{
+            label: "# of Employees",
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                "rgba(255, 99, 132, 0.2)",
+                "rgba(54, 162, 235, 0.2)",
+                "rgba(255, 206, 86, 0.2)",
+                "rgba(75, 192, 192, 0.2)",
+                "rgba(153, 102, 255, 0.2)",
+                "rgba(255, 159, 64, 0.2)",
+            ],
+            borderColor: [
+                "rgba(255, 99, 132, 1)",
+                "rgba(54, 162, 235, 1)",
+                "rgba(255, 206, 86, 1)",
+                "rgba(75, 192, 192, 1)",
+                "rgba(153, 102, 255, 1)",
+                "rgba(255, 159, 64, 1)",
+            ],
+            borderWidth: 1,
+        }, ],
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                },
+            }, ],
+        },
+    },
+});
+
+// reads the vars in the url
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split("&"),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split("=");
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ?
+                true :
+                decodeURIComponent(sParameterName[1]);
+        }
+    }
+};
+
+var message = getUrlParameter("message");
+if (message) {
+    $("#messageModal").modal("show");
+    switch (message) {
+        case "queryFailed":
+            $("#message").html(
+                "This name is already in the database. Please insert an unique name."
+            );
+            break;
+        case "departmentInserted":
+            $("#message").html("New department has been inserted.");
+            break;
+        case "employeeInserted":
+            $("#message").html("New employee has been inserted.");
+            break;
+    }
+}
+
 //get details of each employee
 $("#employeeDetailModal").on("shown.bs.modal", function(e) {
     const name = $(e.relatedTarget).data("id");
@@ -9,7 +84,14 @@ $("#employeeDetailModal").on("shown.bs.modal", function(e) {
             lastName: name,
         },
         success: function(result) {
-            console.log(result);
+            console.log(result.data[0]);
+            $("#employeeFirstName").html(result.data[0].firstName);
+            $("#employeeLastName").html(result.data[0].lastName);
+            $("#employeeEmail").html(result.data[0].email);
+            $("#employeeLocation").html(result.data[0].name);
+            if (result.data[0].jobTitle) {
+                $("#employeeJobTitle").html(result.data[0].jobTitle);
+            }
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);

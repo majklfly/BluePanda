@@ -42,6 +42,8 @@
 
 		mysqli_close($conn);
 
+		header("Location: ../../index.html?message=queryFailed");
+
 		echo json_encode($output); 
 
 		exit;
