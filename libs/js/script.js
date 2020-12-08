@@ -4,7 +4,7 @@ $("#menuIconContainer4").on("click", function(e) {
         $("#listActive").css("display", "flex");
         $("#listPassive").css("display", "none");
         $("#cardsContainer").css("display", "none");
-        $(".employeesList").css("display", "block");
+        $("#employeesListContainer").css("display", "block");
         $.ajax({
             url: "libs/php/getAll.php",
             type: "GET",
@@ -37,7 +37,7 @@ $("#menuIconContainer4").on("click", function(e) {
         $("#listActive").css("display", "none");
         $("#listPassive").css("display", "flex");
         $("#cardsContainer").css("display", "block");
-        $(".employeesList").css("display", "none");
+        $("#employeesListContainer").css("display", "none");
     }
 });
 

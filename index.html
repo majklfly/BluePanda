@@ -61,7 +61,21 @@
     <section id="cardsContainer" class="card-columns">
     </section>
 
-    <div class="list-group employeesList"></div>
+    <div id="employeesListContainer">
+        <div class="dropdown show" id="orderingOption">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Dropdown link
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">Order by Location</a>
+                <a class="dropdown-item" href="#">Order by Name</a>
+                <a class="dropdown-item" href="#">Order By Department</a>
+            </div>
+        </div>
+        <div class="list-group employeesList"></div>
+    </div>
+
 
     <!-- Modal for insert new Department -->
     <div class="modal" tabindex="-1" role="dialog" id="insertDepartmentModal">

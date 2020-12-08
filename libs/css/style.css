@@ -24,6 +24,11 @@ body {
     top: 40vw;
 }
 
+#orderingOption {
+    float: right;
+    margin-right: 5%;
+}
+
 .employeeListRow {
     display: flex;
     flex-direction: row;
@@ -36,15 +41,16 @@ body {
 }
 
 .employeeListItemShort {
-    width: 10%;
+    width: 13%;
     text-align: center;
-    overflow: scroll;
+    overflow: hidden;
+    display: flex;
 }
 
 .employeeListItemLong {
     width: 30%;
     text-align: start;
-    overflow: scroll;
+    overflow: hidden;
 }
 
 #cardsContainer {
@@ -91,7 +97,7 @@ body {
     display: none;
 }
 
-.employeesList {
+#employeesListContainer {
     display: none;
 }
 
@@ -287,5 +293,21 @@ body {
     #navigationContainer {
         margin-left: 50%;
         transform: translateX(-50%);
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #employeesListContainer {
+        margin-top: 40%;
+    }
+    .employeeListRow {
+        flex-direction: column;
+    }
+    .employeeListItemShort {
+        width: 100%;
+        text-align: start;
+    }
+    .employeeListItemLong {
+        width: 100%;
     }
 }
