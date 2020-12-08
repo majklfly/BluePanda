@@ -16,6 +16,11 @@ body {
     margin: 0;
 }
 
+h7 {
+    font-size: clamp(10px, 1vw, 20px);
+    opacity: 0.5;
+}
+
 #cardsContainer {
     width: 90%;
     max-width: 3000px;
@@ -160,9 +165,13 @@ body {
     color: var(--text-color);
 }
 
+#employeeDetailContent h4 {
+    font-size: clamp(15px, 2.2vw, 35px);
+}
+
 #employeeDetailContent>h1 {
     font-size: clamp(15px, 4vw, 35px);
-    text-align: center;
+    text-align: flex-start;
     font-weight: 1000;
     margin-bottom: 10%;
     margin-top: 3%;

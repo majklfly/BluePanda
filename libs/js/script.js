@@ -14,45 +14,6 @@ const cleaningURLParameters = () => {
     }
 };
 
-//graph modal setting
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-    type: "bar",
-    data: {
-        labels: ["London", "Paris", "New York", "Munich", "Rome"],
-        datasets: [{
-            label: "# of Employees",
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                "rgba(255, 99, 132, 0.2)",
-                "rgba(54, 162, 235, 0.2)",
-                "rgba(255, 206, 86, 0.2)",
-                "rgba(75, 192, 192, 0.2)",
-                "rgba(153, 102, 255, 0.2)",
-                "rgba(255, 159, 64, 0.2)",
-            ],
-            borderColor: [
-                "rgba(255, 99, 132, 1)",
-                "rgba(54, 162, 235, 1)",
-                "rgba(255, 206, 86, 1)",
-                "rgba(75, 192, 192, 1)",
-                "rgba(153, 102, 255, 1)",
-                "rgba(255, 159, 64, 1)",
-            ],
-            borderWidth: 1,
-        }, ],
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true,
-                },
-            }, ],
-        },
-    },
-});
-
 // reads the vars in the url
 var getUrlParameter = function getUrlParameter(sParam) {
     var sPageURL = window.location.search.substring(1),
@@ -101,6 +62,62 @@ if (message) {
     }
 }
 
+//render statistic data of the company
+$("#graphsModal").on("shown.bs.modal", function(e) {
+    $.ajax({
+        url: "libs/php/employeeDetail.php",
+        type: "GET",
+        dataType: "json",
+        data: {
+            lastName: name,
+        },
+        success: function(result) {
+            console.log(result);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+        },
+    });
+    //graph modal setting
+    var ctx = document.getElementById("locationChart");
+    var myChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: ["London", "Paris", "New York", "Munich", "Rome"],
+            datasets: [{
+                label: "# of Employees",
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    "rgba(255, 99, 132, 0.2)",
+                    "rgba(54, 162, 235, 0.2)",
+                    "rgba(255, 206, 86, 0.2)",
+                    "rgba(75, 192, 192, 0.2)",
+                    "rgba(153, 102, 255, 0.2)",
+                    "rgba(255, 159, 64, 0.2)",
+                ],
+                borderColor: [
+                    "rgba(255, 99, 132, 1)",
+                    "rgba(54, 162, 235, 1)",
+                    "rgba(255, 206, 86, 1)",
+                    "rgba(75, 192, 192, 1)",
+                    "rgba(153, 102, 255, 1)",
+                    "rgba(255, 159, 64, 1)",
+                ],
+                borderWidth: 1,
+            }, ],
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                    },
+                }, ],
+            },
+        },
+    });
+});
+
 //get details of each employee
 $("#employeeDetailModal").on("shown.bs.modal", function(e) {
     const name = $(e.relatedTarget).data("id");
@@ -112,7 +129,6 @@ $("#employeeDetailModal").on("shown.bs.modal", function(e) {
             lastName: name,
         },
         success: function(result) {
-            console.log(result.data[0]);
             $("#employeeFirstName").html(result.data[0].firstName);
             $("#employeeLastName").html(result.data[0].lastName);
             $("#employeeEmail").html(result.data[0].email);
@@ -125,6 +141,15 @@ $("#employeeDetailModal").on("shown.bs.modal", function(e) {
             console.log(jqXHR);
         },
     });
+});
+
+// cleaning the employee profile on close
+$("#employeeDetailModal").on("hidden.bs.modal", function() {
+    $("#employeeFirstName").html(" ");
+    $("#employeeLastName").html(" ");
+    $("#employeeEmail").html(" ");
+    $("#employeeLocation").html(" ");
+    $("#employeeJobTitle").html(" ");
 });
 
 // draggable users between the departments functionality
