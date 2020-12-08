@@ -136,6 +136,22 @@ $("#employeeDetailModal").on("shown.bs.modal", function(e) {
             if (result.data[0].jobTitle) {
                 $("#employeeJobTitle").html(result.data[0].jobTitle);
             }
+            // handling deleting profile on press
+            $("#employeeDeleteButton").on("click", function(e) {
+                $.ajax({
+                    url: "libs/php/deleteEmployee.php",
+                    type: "POST",
+                    data: {
+                        lastName: name,
+                    },
+                    success: function(result) {
+                        window.location.reload();
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR);
+                    },
+                });
+            });
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);
