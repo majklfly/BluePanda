@@ -77,7 +77,7 @@ if (message) {
     switch (message) {
         case "queryFailed":
             $("#messageAnimationContainer").append(
-                "<lottie-player id='messageAnimation' src='https://assets5.lottiefiles.com/packages/lf20_1usitmgx.json' background='transparent' speed='1' autoplay></lottie-player>"
+                "<lottie-player id='messageAnimation' src='libs/img/errorAnimation.json' background='transparent' speed='1' autoplay></lottie-player>"
             );
             $("#message").html(
                 "This name is already in the database. Please insert an unique name."
@@ -86,14 +86,14 @@ if (message) {
             break;
         case "departmentInserted":
             $("#messageAnimationContainer").append(
-                "<lottie-player id='messageAnimation' src='https://assets7.lottiefiles.com/packages/lf20_cu7ci0e9.json' background='transparent' speed='1' autoplay></lottie-player>"
+                "<lottie-player id='messageAnimation' src='libs/img/successAnimation.json' background='transparent' speed='1' autoplay></lottie-player>"
             );
             $("#message").html("New department has been inserted.");
             cleaningURLParameters();
             break;
         case "employeeInserted":
             $("#messageAnimationContainer").append(
-                "<lottie-player id='messageAnimation' src='https://assets7.lottiefiles.com/packages/lf20_cu7ci0e9.json' background='transparent' speed='1' autoplay></lottie-player>"
+                "<lottie-player id='messageAnimation' src='libs/img/successAnimation.json' background='transparent' speed='1' autoplay></lottie-player>"
             );
             $("#message").html("New employee has been inserted.");
             cleaningURLParameters();
