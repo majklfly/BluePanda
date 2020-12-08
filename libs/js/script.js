@@ -62,31 +62,17 @@ if (message) {
     }
 }
 
-//render statistic data of the company
-$("#graphsModal").on("shown.bs.modal", function(e) {
-    $.ajax({
-        url: "libs/php/employeeDetail.php",
-        type: "GET",
-        dataType: "json",
-        data: {
-            lastName: name,
-        },
-        success: function(result) {
-            console.log(result);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.log(jqXHR);
-        },
-    });
+const renderPieChart = (London, Paris, New_York, Munich, Rome) => {
+    console.log("london", London);
     //graph modal setting
     var ctx = document.getElementById("locationChart");
     var myChart = new Chart(ctx, {
-        type: "bar",
+        type: "pie",
         data: {
             labels: ["London", "Paris", "New York", "Munich", "Rome"],
             datasets: [{
                 label: "# of Employees",
-                data: [12, 19, 3, 5, 2, 3],
+                data: [London, Paris, New_York, Munich, Rome],
                 backgroundColor: [
                     "rgba(255, 99, 132, 0.2)",
                     "rgba(54, 162, 235, 0.2)",
@@ -114,6 +100,43 @@ $("#graphsModal").on("shown.bs.modal", function(e) {
                     },
                 }, ],
             },
+        },
+    });
+};
+
+//render statistic data of the company
+$("#graphsModal").on("shown.bs.modal", function(e) {
+    let London = 0;
+    let Paris = 0;
+    let New_York = 0;
+    let Munich = 0;
+    let Rome = 0;
+    $.ajax({
+        url: "libs/php/getAll.php",
+        type: "GET",
+        dataType: "json",
+        data: {
+            lastName: name,
+        },
+        success: function(result) {
+            result.data.map((item) => {
+                switch (item.location) {
+                    case "London":
+                        London += 1;
+                    case "Paris":
+                        Paris++;
+                    case "New York":
+                        New_York++;
+                    case "Munich":
+                        Munich++;
+                    case "Rome":
+                        Rome++;
+                }
+            });
+            renderPieChart(London, Paris, New_York, Munich, Rome);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
         },
     });
 });
