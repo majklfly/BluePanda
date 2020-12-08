@@ -183,6 +183,16 @@ body {
     text-align: center;
 }
 
+#messageAnimation {
+    width: 100%;
+    height: 100%;
+}
+
+#messageAnimationContainer {
+    width: 20vw;
+    height: 20vw;
+}
+
 #graphsContent {
     padding: 2vw;
     margin-top: 40%;

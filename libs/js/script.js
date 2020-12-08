@@ -1,3 +1,19 @@
+//removing URL parameters without refreshing page
+const cleaningURLParameters = () => {
+    // get the string following the ?
+    var query = window.location.search.substring(1);
+
+    // is there anything there ?
+    if (query.length) {
+        // are the new history methods available ?
+        if (window.history != undefined && window.history.pushState != undefined) {
+            // if pushstate exists, add a new state to the history, this changes the url without reloading the page
+
+            window.history.pushState({}, document.title, window.location.pathname);
+        }
+    }
+};
+
 //graph modal setting
 var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
@@ -60,15 +76,27 @@ if (message) {
     $("#messageModal").modal("show");
     switch (message) {
         case "queryFailed":
+            $("#messageAnimationContainer").append(
+                "<lottie-player id='messageAnimation' src='https://assets5.lottiefiles.com/packages/lf20_1usitmgx.json' background='transparent' speed='1' autoplay></lottie-player>"
+            );
             $("#message").html(
                 "This name is already in the database. Please insert an unique name."
             );
+            cleaningURLParameters();
             break;
         case "departmentInserted":
+            $("#messageAnimationContainer").append(
+                "<lottie-player id='messageAnimation' src='https://assets7.lottiefiles.com/packages/lf20_cu7ci0e9.json' background='transparent' speed='1' autoplay></lottie-player>"
+            );
             $("#message").html("New department has been inserted.");
+            cleaningURLParameters();
             break;
         case "employeeInserted":
+            $("#messageAnimationContainer").append(
+                "<lottie-player id='messageAnimation' src='https://assets7.lottiefiles.com/packages/lf20_cu7ci0e9.json' background='transparent' speed='1' autoplay></lottie-player>"
+            );
             $("#message").html("New employee has been inserted.");
+            cleaningURLParameters();
             break;
     }
 }
