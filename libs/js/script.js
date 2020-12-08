@@ -81,24 +81,58 @@ const renderPieChart = (London, Paris, New_York, Munich, Rome) => {
                     "rgba(153, 102, 255, 0.2)",
                     "rgba(255, 159, 64, 0.2)",
                 ],
-                borderColor: [
-                    "rgba(255, 99, 132, 1)",
-                    "rgba(54, 162, 235, 1)",
-                    "rgba(255, 206, 86, 1)",
-                    "rgba(75, 192, 192, 1)",
-                    "rgba(153, 102, 255, 1)",
-                    "rgba(255, 159, 64, 1)",
-                ],
-                borderWidth: 1,
+                borderColor: "rgba(0, 0, 0, 0)",
             }, ],
         },
         options: {
             scales: {
-                yAxes: [{
+                xAxes: [{
                     ticks: {
-                        beginAtZero: true,
+                        display: false,
+                    },
+                    gridLines: {
+                        display: false,
                     },
                 }, ],
+                yAxes: [{
+                    ticks: {
+                        display: false,
+                    },
+                    gridLines: {
+                        display: false,
+                    },
+                }, ],
+            },
+        },
+    });
+};
+
+const renderBarChart = (London, Paris, New_York, Munich, Rome) => {
+    console.log("london", London);
+    //graph modal setting
+    var ctx = document.getElementById("departmentChart");
+    var myChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: ["London", "Paris", "New York", "Munich", "Rome"],
+            datasets: [{
+                label: "# of Employees",
+                data: [London, Paris, New_York, Munich, Rome],
+                backgroundColor: [
+                    "rgba(255, 99, 132, 0.2)",
+                    "rgba(54, 162, 235, 0.2)",
+                    "rgba(255, 206, 86, 0.2)",
+                    "rgba(75, 192, 192, 0.2)",
+                    "rgba(153, 102, 255, 0.2)",
+                    "rgba(255, 159, 64, 0.2)",
+                ],
+                borderColor: "rgba(0, 0, 0, 0)",
+            }, ],
+        },
+        options: {
+            scales: {
+                xAxes: [{}],
+                yAxes: [{}],
             },
         },
     });
@@ -134,6 +168,7 @@ $("#graphsModal").on("shown.bs.modal", function(e) {
                 }
             });
             renderPieChart(London, Paris, New_York, Munich, Rome);
+            renderBarChart(London, Paris, New_York, Munich, Rome);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);

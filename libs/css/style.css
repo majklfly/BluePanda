@@ -211,6 +211,12 @@ h7 {
     text-align: center;
 }
 
+.graphsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    display: row;
+}
+
 .userDetailsRow h4 {
     font-size: clamp(12px, 1.9vw, 25px);
     text-decoration: underline;
