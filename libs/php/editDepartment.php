@@ -34,8 +34,8 @@
 
 	$result = false;
     
-    if (strlen($_REQUEST['firstName']) > 1) {
-        $query = 'UPDATE personnel SET firstName = "' . $_POST['firstName'] . '" WHERE lastName = "' . $_POST['uniqueLastName'] . '"';
+    if (strlen($_POST['name']) > 1) {
+        $query = 'UPDATE department SET name = "' . $_POST['name'] . '" WHERE id = ' . $_POST['departmentId'];
 		$response = $conn->query($query);
         if (!$response) {
             $result = false;
@@ -44,25 +44,15 @@
 		};
 	};
 	
-	if (strlen($_REQUEST['email']) > 1) {
-        $query = 'UPDATE personnel SET email = "' . $_POST['email'] . '" WHERE lastName = "' . $_POST['uniqueLastName'] . '"';
+	if ($_POST['locations'] != "0") {
+        $query = 'UPDATE department SET locationID = ' . $_POST['locations'] . ' WHERE id = ' . $_POST['departmentId'];
 		$response = $conn->query($query);
         if (!$response) {
             $result = false;
         } else {
 			$result = true;
 		};
-	};
-	
-	if (strlen($_REQUEST['jobTitle']) > 1) {
-        $query = 'UPDATE personnel SET jobTitle = "' . $_POST['jobTitle'] . '" WHERE lastName = "' . $_POST['uniqueLastName'] . '"';
-		$response = $conn->query($query);
-        if (!$response) {
-            $result = false;
-        } else {
-			$result = true;
-		};
-	};
+    };
 	
 	if (!$result) {
 
@@ -87,7 +77,7 @@
 	$output['status']['returnedIn'] = (microtime(true) - $executionStartTime) / 1000 . " ms";
 	$output['data'] = [];
 
-	header("Location: ../../index.html?message=employeeEdited");
+	header("Location: ../../index.html?message=departmentEdited");
 	
 	mysqli_close($conn);
 

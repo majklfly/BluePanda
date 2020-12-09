@@ -20,13 +20,26 @@ body {
     width: 90%;
     margin-left: 50%;
     transform: translate(-50%);
-    position: absolute;
-    top: 40vw;
+    position: absolute
 }
 
 #orderingOption {
-    float: right;
-    margin-right: 5%;
+    width: 15%;
+    margin-left: 5%;
+    margin-bottom: 1%;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+#dropdownMenuLink {
+    color: var(--text-color);
+    width: 100%;
+}
+
+.employeesListContainer {
+    display: flex;
+    flex-direction: column;
+    top: 40vw;
 }
 
 .employeeListRow {
@@ -97,6 +110,10 @@ body {
     display: none;
 }
 
+.departmentEditActive {
+    display: none;
+}
+
 #employeesListContainer {
     display: none;
 }
@@ -147,10 +164,10 @@ body {
     height: 80px;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
-    padding: 5px;
+    padding: 10%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .card-title h4 {
@@ -280,13 +297,83 @@ body {
     display: none;
 }
 
-#editUserForm {
+.editUserForm {
     width: 100%;
 }
 
 #SubmitProfileChange {
     margin: 5%;
     float: right;
+}
+
+#confirmDeleteContent {
+    padding: 2vw;
+    background-color: var(--background-color);
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text-color);
+    text-align: center;
+}
+
+#deleteLocationButton {
+    display: none;
+}
+
+.locationRow {
+    background-color: var(--background-color);
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fa-times {
+    cursor: pointer;
+}
+
+#locationContent {
+    background-color: var(--background-color);
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text-color);
+}
+
+#newLocationForm {
+    padding: 3%;
+    display: none;
+}
+
+#deleteLocationContent {
+    background-color: var(--background-color);
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text-color);
+    padding: 3%;
+    text-align: center;
+}
+
+.departmentEditPassive {
+    cursor: pointer;
+}
+
+#editDepartmentContent {
+    background-color: var(--background-color);
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text-color);
+}
+
+#deleteDepartmentContent {
+    background-color: var(--background-color);
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text-color);
+    padding: 3%;
+    text-align: center;
+}
+
+#confirmDeleteDepartmentButton {
+    display: none;
+}
+
+#editDepartmentForm {
+    padding: 5%;
 }
 
 @media only screen and (min-width: 1500px) {
@@ -298,7 +385,10 @@ body {
 
 @media only screen and (max-width: 600px) {
     #employeesListContainer {
-        margin-top: 40%;
+        margin-top: 20%;
+    }
+    #orderingOption {
+        width: 50%;
     }
     .employeeListRow {
         flex-direction: column;

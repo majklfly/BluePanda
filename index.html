@@ -63,14 +63,13 @@
 
     <div id="employeesListContainer">
         <div class="dropdown show" id="orderingOption">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown link
+            <a class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Order By
             </a>
-
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="#">Order by Location</a>
-                <a class="dropdown-item" href="#">Order by Name</a>
-                <a class="dropdown-item" href="#">Order By Department</a>
+                <a class="dropdown-item" href="#" id="orderByLocationButton">Order by Location</a>
+                <a class="dropdown-item" href="#" id="orderByNameButton">Order by Last Name</a>
+                <a class="dropdown-item" href="#" id="orderByDepartmentButton">Order By Department</a>
             </div>
         </div>
         <div class="list-group employeesList"></div>
@@ -78,7 +77,7 @@
 
 
     <!-- Modal for insert new Department -->
-    <div class="modal" tabindex="-1" role="dialog" id="insertDepartmentModal">
+    <div class="modal fade" tabindex="-1" role="dialog" id="insertDepartmentModal">
         <div class="modal-dialog" role="document" id="insertDepartmentDialog">
             <div class="modal-content" id="insertDepartmentContent">
                 <form id="inserDepartmentForm" class="form" method="POST" action='./libs/php/insertDepartment.php' role="form">
@@ -107,7 +106,7 @@
     </div>
 
     <!-- Modal for inserting a new employee to the database -->
-    <div class="modal" tabindex="-1" role="dialog" id="insertNewEmployeeModal">
+    <div class="modal fade" tabindex="-1" role="dialog" id="insertNewEmployeeModal">
         <div class="modal-dialog" role="document" id="insertNewEmployeeDialog">
             <div class="modal-content" id="insertNewEmployeeContent">
                 <form id="inserNewEmployeeForm" class="form" method="POST" action='./libs/php/insertNewEmployee.php' role="form">
@@ -140,7 +139,7 @@
     </div>
 
     <!-- Modal for get and edit details about the employee -->
-    <div class="modal" tabindex="-1" role="dialog" id="employeeDetailModal">
+    <div class="modal fade" tabindex="-1" role="dialog" id="employeeDetailModal">
         <div class="modal-dialog" role="document" id="employeeDetailDialog">
             <div class="modal-content" id="employeeDetailContent">
                 <h1>Employee details</h1>
@@ -168,14 +167,10 @@
                     </div>
                 </div>
                 <div id="userEditContainer">
-                    <form id="editUserForm" method="POST" action='./libs/php/editEmployee.php' role="form">
+                    <form class="editUserForm" method="POST" action='./libs/php/editEmployee.php' role="form">
                         <div class="form-group">
                             <label for="exampleInputEmail1">First Name</label>
                             <input type="text" class="form-control" placeholder="Update First Name" name="firstName">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Last Name</label>
-                            <input type="text" class="form-control" placeholder="Update Last Name" name="lastName">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email address</label>
@@ -183,22 +178,22 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Job Title</label>
-                            <input type="email" class="form-control" placeholder="Update Job Title" name="jobTitle">
+                            <input type="text" class="form-control" placeholder="Update Job Title" name="jobTitle">
                         </div>
-                        <button type="submit" class="btn btn-primary" id="SubmitProfileChange">Update</button>
+                        <button type="submit" class="btn btn-primary" id="SubmitProfileChange" name="uniqueLastName">Update</button>
                         <small id="emailHelp" class="form-text text-muted">Only the filled field will be updated.</small>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id="employeeEditButton">Show edit options</button>
-                    <button type="submit" class="btn btn-danger" id="employeeDeleteButton">Delete the employee</button>
+                    <button type="submit" class="btn btn-danger" id="DeleteButton" data-toggle="modal" data-target="#confirmDeleteModal">Delete the employee</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Modal for get the graphs of the company -->
-    <div class="modal" tabindex="-1" role="dialog" id="graphsModal">
+    <div class="modal fade" tabindex="-1" role="dialog" id="graphsModal">
         <div class="modal-dialog" role="document" id="graphsDialog">
             <div class="modal-content" id="graphsContent">
                 <h1>Graphic Representation</h1>
@@ -218,7 +213,7 @@
     </div>
 
     <!-- modal with different content after interaction with the database -->
-    <div class="modal" tabindex="-1" role="dialog" id="messageModal">
+    <div class="modal fade" tabindex="-1" role="dialog" id="messageModal">
         <div class="modal-dialog" role="document" id="messageDialog">
             <div class="modal-content" id="messageContent">
                 <h1 id="message">message</h1>
@@ -229,10 +224,80 @@
     </div>
 
     <!-- modal to show form to insert a new location -->
-    <div class="modal" tabindex="-1" role="dialog" id="locationModal">
+    <div class="modal fade" tabindex="-1" role="dialog" id="locationModal">
         <div class="modal-dialog" role="document" id="locationDialog">
             <div class="modal-content" id="locationContent">
-                <h1>Insert new Location</h1>
+                <ul class="list-group" id="locationsList"></ul>
+                <form id="newLocationForm" method="POST" action="libs/php/insertNewLocation.php">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="location">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Add New Location</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal to confirm delete option -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="confirmDeleteModal">
+        <div class="modal-dialog" role="document" id="confirmDeleteDialog">
+            <div class="modal-content" id="confirmDeleteContent">
+                <h1>Are you sure you would like to delete this employee?</h1>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" id="employeeDeleteButton">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal to confirm delete location -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="deleteLocationModal">
+        <div class="modal-dialog" role="document" id="deleteLocationDialog">
+            <div class="modal-content" id="deleteLocationContent">
+                <h1 id="deleteLocationMessage"></h1>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" id="deleteLocationConfirmButton">Delete Location</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal to confirm delete location -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="deleteDepartmentModal">
+        <div class="modal-dialog" role="document" id="deleteDepartmentDialog">
+            <div class="modal-content" id="deleteDepartmentContent">
+                <h1 id="deleteDepartmentMessage"></h1>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" id="confirmDeleteDepartmentButton">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal to edit/delete department -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="editDepartmentModal">
+        <div class="modal-dialog" role="document" id="editDepartmentDialog">
+            <div class="modal-content" id="editDepartmentContent">
+                <form id="editDepartmentForm" method="POST" action="libs/php/editDepartment.php">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Department Name</label>
+                            <input type="text" class="form-control" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Locations</label>
+                            <select class="form-control" name="locations" id="locationsEditSelect">
+                                <option value="0">...pick new location...</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary updateSettings" name="departmentId">Update setting</button>
+                        <button type="button" class="btn btn-danger" id="deleteDepartmentButton">Delete department</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

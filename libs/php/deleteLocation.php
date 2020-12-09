@@ -1,9 +1,5 @@
 <?php
 
-	// example use from browser
-	// use insertDepartment.php first to create new dummy record and then specify it's id in the command below
-	// http://localhost/companydirectory/libs/php/deleteDepartmentByID.php?id= <id>
-
 	// remove next two lines for production
 	
 	ini_set('display_errors', 'On');
@@ -11,7 +7,7 @@
 
 	$executionStartTime = microtime(true);
 
-	include("config.php");
+    include("config.php");
 
 	$conn = new mysqli($cd_host, $cd_user, $cd_password, $cd_dbname, $cd_port, $cd_socket);
 
@@ -29,11 +25,11 @@
 
 		exit;
 
-	}	
+	}
 
-	$query = 'DELETE FROM department WHERE id = ' . $_REQUEST['departmentId'];
+    $query = 'DELETE FROM location WHERE id = ' . $_REQUEST['locationId'];
 
-	$result = $conn->query($query);
+    $result = $conn->query($query);
 	
 	if (!$result) {
 
@@ -43,6 +39,8 @@
 		$output['data'] = [];
 
 		mysqli_close($conn);
+
+		header("Location: ../../index.html?message=queryFailed");
 
 		echo json_encode($output); 
 
@@ -55,11 +53,11 @@
 	$output['status']['description'] = "success";
 	$output['status']['returnedIn'] = (microtime(true) - $executionStartTime) / 1000 . " ms";
 	$output['data'] = [];
-	
-	mysqli_close($conn);
+    
+    mysqli_close($conn);
 
-	header('Content-Type: application/json; charset=UTF-8');
-
-	echo json_encode($output); 
+    header('Content-Type: application/json; charset=UTF-8');
+    
+    echo json_encode($output); 
 
 ?>
