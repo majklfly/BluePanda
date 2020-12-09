@@ -217,11 +217,23 @@ body {
 
 #profilePicture {
     position: absolute;
-    width: 10vw;
+    width: 8vw;
     height: auto;
     right: 3vw;
     top: 3vw;
     opacity: 0.1;
+}
+
+#insertNewEmployeeContent {
+    background-color: var(--background-color);
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text-color);
+}
+
+#insertDepartmentContent {
+    background-color: var(--background-color);
+    font-family: 'Open Sans', sans-serif;
+    color: var(--text-color);
 }
 
 #employeeDetailContent {
@@ -232,7 +244,7 @@ body {
 }
 
 #employeeDetailContent h4 {
-    font-size: clamp(15px, 2.2vw, 35px);
+    font-size: clamp(15px, 1vw, 22px);
 }
 
 #employeeDetailContent>h1 {

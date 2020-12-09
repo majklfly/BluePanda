@@ -696,6 +696,7 @@ $("#editDepartmentModal").on("shown.bs.modal", function(e) {
 
 // makes an ajax call to insert a new department to the database
 $("#insertNewEmployeeModal").on("shown.bs.modal", function(e) {
+    $(".departmentOpts").remove();
     $.ajax({
         url: "libs/php/getAllDepartments.php",
         type: "GET",
@@ -703,7 +704,11 @@ $("#insertNewEmployeeModal").on("shown.bs.modal", function(e) {
         success: function(result) {
             result.data.map((item) => {
                 $("#newEmployeeDepartment").append(
-                    "<option value=" + item.id + ">" + item.name + "</option>"
+                    "<option class='departmentOpts' value=" +
+                    item.id +
+                    ">" +
+                    item.name +
+                    "</option>"
                 );
             });
         },
@@ -715,6 +720,7 @@ $("#insertNewEmployeeModal").on("shown.bs.modal", function(e) {
 
 //get all employess to the form option
 $("#insertDepartmentModal").on("shown.bs.modal", function(e) {
+    $(".locationopt").remove();
     $("#colorpicker1").spectrum({
         color: "#ff8810",
     });
@@ -729,7 +735,11 @@ $("#insertDepartmentModal").on("shown.bs.modal", function(e) {
             console.log(result);
             result.data.map((item) => {
                 $("#departmentLocation").append(
-                    "<option value=" + item.id + ">" + item.name + "</option>"
+                    "<option class='locationopt' value=" +
+                    item.id +
+                    ">" +
+                    item.name +
+                    "</option>"
                 );
             });
         },
