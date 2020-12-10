@@ -36,6 +36,16 @@ body {
     width: 100%;
 }
 
+#loadingListAnimation {
+    margin-left: 50%;
+    margin-top: 10%;
+    transform: translate(-50%);
+    width: 25vw;
+    height: auto;
+    opacity: 0.6;
+    display: none;
+}
+
 .employeesListContainer {
     display: flex;
     flex-direction: column;

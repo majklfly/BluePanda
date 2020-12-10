@@ -1,5 +1,7 @@
 //handles search input to get update the list of employees
 $("#searchButton").on("click", function() {
+    $("#loadingListAnimation").css("display", "block");
+    $(".employeesList").css("display", "none");
     $(".employeeListRow").remove();
     const regExp = $("#regExp").val();
     $.ajax({
@@ -27,6 +29,8 @@ $("#searchButton").on("click", function() {
                     "</p></div>"
                 );
             });
+            $("#loadingListAnimation").css("display", "none");
+            $(".employeesList").css("display", "block");
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);
@@ -36,6 +40,8 @@ $("#searchButton").on("click", function() {
 
 //organize the list based on location
 $("#orderByLocationButton").on("click", function() {
+    $("#loadingListAnimation").css("display", "block");
+    $(".employeesList").css("display", "none");
     $(".employeeListRow").remove();
     $.ajax({
         url: "libs/php/getAllOrderedBy.php",
@@ -62,6 +68,8 @@ $("#orderByLocationButton").on("click", function() {
                     "</p></div>"
                 );
             });
+            $("#loadingListAnimation").css("display", "none");
+            $(".employeesList").css("display", "block");
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);
@@ -71,6 +79,8 @@ $("#orderByLocationButton").on("click", function() {
 
 // organize the list based on last Name
 $("#orderByNameButton").on("click", function() {
+    $("#loadingListAnimation").css("display", "block");
+    $(".employeesList").css("display", "none");
     $(".employeeListRow").remove();
     $.ajax({
         url: "libs/php/getAllOrderedBy.php",
@@ -97,6 +107,8 @@ $("#orderByNameButton").on("click", function() {
                     "</p></div>"
                 );
             });
+            $("#loadingListAnimation").css("display", "none");
+            $(".employeesList").css("display", "block");
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);
@@ -106,6 +118,8 @@ $("#orderByNameButton").on("click", function() {
 
 // organize the list based on department
 $("#orderByDepartmentButton").on("click", function() {
+    $("#loadingListAnimation").css("display", "block");
+    $(".employeesList").css("display", "none");
     $(".employeeListRow").remove();
     $.ajax({
         url: "libs/php/getAllOrderedBy.php",
@@ -132,6 +146,8 @@ $("#orderByDepartmentButton").on("click", function() {
                     "</p></div>"
                 );
             });
+            $("#loadingListAnimation").css("display", "none");
+            $(".employeesList").css("display", "block");
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);
@@ -142,6 +158,8 @@ $("#orderByDepartmentButton").on("click", function() {
 //shows/hides the list of all employees
 $("#menuIconContainer4").on("click", function(e) {
     if ($("#cardsContainer").css("display") === "block") {
+        $("#loadingListAnimation").css("display", "block");
+        $(".employeesList").css("display", "none");
         $("#listActive").css("display", "flex");
         $("#listPassive").css("display", "none");
         $("#cardsContainer").css("display", "none");
@@ -171,6 +189,8 @@ $("#menuIconContainer4").on("click", function(e) {
                         "</p></div>"
                     );
                 });
+                $("#loadingListAnimation").css("display", "none");
+                $(".employeesList").css("display", "block");
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 console.log(jqXHR);
