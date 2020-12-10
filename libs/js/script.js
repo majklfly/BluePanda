@@ -1,3 +1,39 @@
+//handles search input to get update the list of employees
+$("#searchButton").on("click", function() {
+    $(".employeeListRow").remove();
+    const regExp = $("#regExp").val();
+    $.ajax({
+        url: "libs/php/getLastNameRegExp.php",
+        type: "POST",
+        dataType: "json",
+        data: {
+            regExp: regExp,
+        },
+        success: function(result) {
+            result.data.map((item) => {
+                $(".employeesList").append(
+                    "<div class='list-group-item list-group-item-action employeeListRow' data-toggle='modal' data-target='#employeeDetailModal' data-id=" +
+                    item.lastName +
+                    "><p class='employeeListItemShort'>" +
+                    item.firstName +
+                    "</p><p class='employeeListItemShort'>" +
+                    item.lastName +
+                    "</p><p class='employeeListItemLong'>" +
+                    item.email +
+                    "</p><p class='employeeListItemLong'>" +
+                    item.department +
+                    "</p><p class='employeeListItemShort'>" +
+                    item.location +
+                    "</p></div>"
+                );
+            });
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+        },
+    });
+});
+
 //organize the list based on location
 $("#orderByLocationButton").on("click", function() {
     $(".employeeListRow").remove();
@@ -872,4 +908,9 @@ $(window).on("resize", function() {
         width = $(this).width();
         window.location.reload();
     }
+});
+
+// functions runned on leave
+$(window).bind("beforeunload", function() {
+    localStorage.clear();
 });
