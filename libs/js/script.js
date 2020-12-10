@@ -12,25 +12,33 @@ $("#searchButton").on("click", function() {
             regExp: regExp,
         },
         success: function(result) {
-            result.data.map((item) => {
-                $(".employeesList").append(
-                    "<div class='list-group-item list-group-item-action employeeListRow' data-toggle='modal' data-target='#employeeDetailModal' data-id=" +
-                    item.lastName +
-                    "><p class='employeeListItemShort'>" +
-                    item.firstName +
-                    "</p><p class='employeeListItemShort'>" +
-                    item.lastName +
-                    "</p><p class='employeeListItemLong'>" +
-                    item.email +
-                    "</p><p class='employeeListItemLong'>" +
-                    item.department +
-                    "</p><p class='employeeListItemShort'>" +
-                    item.location +
-                    "</p></div>"
+            if (result.data.length > 0) {
+                result.data.map((item) => {
+                    $(".employeesList").append(
+                        "<div class='list-group-item list-group-item-action employeeListRow' data-toggle='modal' data-target='#employeeDetailModal' data-id=" +
+                        item.lastName +
+                        "><p class='employeeListItemShort'>" +
+                        item.firstName +
+                        "</p><p class='employeeListItemShort'>" +
+                        item.lastName +
+                        "</p><p class='employeeListItemLong'>" +
+                        item.email +
+                        "</p><p class='employeeListItemLong'>" +
+                        item.department +
+                        "</p><p class='employeeListItemShort'>" +
+                        item.location +
+                        "</p></div>"
+                    );
+                });
+                $("#loadingListAnimation").css("display", "none");
+                $(".employeesList").css("display", "block");
+            } else {
+                $("#loadingListAnimation").css("display", "none");
+                $(".employeesList").css("display", "block");
+                $("#emptySearchMessage").html(
+                    "No search results have been found. Please update searching criteria."
                 );
-            });
-            $("#loadingListAnimation").css("display", "none");
-            $(".employeesList").css("display", "block");
+            }
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);
@@ -870,7 +878,7 @@ $.ajax({
                 department.secondColor +
                 ")'><h4>" +
                 department.name +
-                "</h4><i class='far fa-edit departmentEditPassive' data-toggle='modal' data-target='#editDepartmentModal' id=" +
+                "</h4><i class='fas fa-cog departmentEditPassive' data-toggle='modal' data-target='#editDepartmentModal' id=" +
                 department.id +
                 "></i></div><div class='card-body' id=" +
                 departmentN +
