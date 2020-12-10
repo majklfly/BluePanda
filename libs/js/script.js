@@ -563,7 +563,7 @@ $("#employeeDetailModal").on("hidden.bs.modal", function() {
     $("#employeeLastName").html(" ");
     $("#employeeEmail").html(" ");
     $("#employeeLocation").html(" ");
-    $("#employeeJobTitle").html(" ");
+    $("#employeeJobTitle").html("---");
 });
 
 // draggable users between the departments functionality
