@@ -142,30 +142,34 @@
     <div class="modal fade" tabindex="-1" role="dialog" id="employeeDetailModal">
         <div class="modal-dialog" role="document" id="employeeDetailDialog">
             <div class="modal-content" id="employeeDetailContent">
-                <h1>Employee details</h1>
-                <img id="profilePicture" src="libs/img/userPicture.svg" alt="profilePic">
-                <div id="userDetailsContainer">
-                    <div class="userDetailsRow">
-                        <h4>First Name:</h4>
-                        <h3 id="employeeFirstName"></h3>
-                    </div>
-                    <div class="userDetailsRow">
-                        <h4>Last Name:</h4>
-                        <h3 id="employeeLastName"></h3>
-                    </div>
-                    <div class="userDetailsRow">
-                        <h4>Email:</h4>
-                        <h3 id="employeeEmail"></h3>
-                    </div>
-                    <div class="userDetailsRow">
-                        <h4>Job title:</h4>
-                        <h3 id="employeeJobTitle">---</h3>
-                    </div>
-                    <div class="userDetailsRow">
-                        <h4>Location:</h4>
-                        <h3 id="employeeLocation"></h3>
+                <lottie-player id='loadingAnimation' src="https://assets3.lottiefiles.com/packages/lf20_3s96Rl/loadicon.json" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></lottie-player>
+                <div id="employeeDetails">
+                    <h1>Employee details</h1>
+                    <img id="profilePicture" src="libs/img/userPicture.svg" alt="profilePic">
+                    <div id="userDetailsContainer">
+                        <div class="userDetailsRow">
+                            <h4>First Name:</h4>
+                            <h3 id="employeeFirstName"></h3>
+                        </div>
+                        <div class="userDetailsRow">
+                            <h4>Last Name:</h4>
+                            <h3 id="employeeLastName"></h3>
+                        </div>
+                        <div class="userDetailsRow">
+                            <h4>Email:</h4>
+                            <h3 id="employeeEmail"></h3>
+                        </div>
+                        <div class="userDetailsRow">
+                            <h4>Job title:</h4>
+                            <h3 id="employeeJobTitle">---</h3>
+                        </div>
+                        <div class="userDetailsRow">
+                            <h4>Location:</h4>
+                            <h3 id="employeeLocation"></h3>
+                        </div>
                     </div>
                 </div>
+
                 <div id="userEditContainer">
                     <form class="editUserForm" method="POST" action='./libs/php/editEmployee.php' role="form">
                         <div class="form-group">

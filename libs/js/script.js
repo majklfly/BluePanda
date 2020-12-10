@@ -517,6 +517,8 @@ $("#DeleteButton").on("click", function() {
 
 //get details of each employee
 $("#employeeDetailModal").on("shown.bs.modal", function(e) {
+    $("#loadingAnimation").css("display", "block");
+    $("#employeeDetails").css("display", "none");
     const name = $(e.relatedTarget).data("id");
     localStorage.setItem("lastName", name);
     $.ajax({
@@ -550,6 +552,8 @@ $("#employeeDetailModal").on("shown.bs.modal", function(e) {
                     },
                 });
             });
+            $("#loadingAnimation").css("display", "none");
+            $("#employeeDetails").css("display", "block");
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);
@@ -559,11 +563,8 @@ $("#employeeDetailModal").on("shown.bs.modal", function(e) {
 
 // cleaning the employee profile on close
 $("#employeeDetailModal").on("hidden.bs.modal", function() {
-    $("#employeeFirstName").html(" ");
-    $("#employeeLastName").html(" ");
-    $("#employeeEmail").html(" ");
-    $("#employeeLocation").html(" ");
-    $("#employeeJobTitle").html("---");
+    $("#loadingAnimation").css("display", "block");
+    $("#employeeDetails").css("display", "none");
 });
 
 // draggable users between the departments functionality

@@ -224,6 +224,10 @@ body {
     opacity: 0.1;
 }
 
+#loadingAnimation {
+    display: none;
+}
+
 #insertNewEmployeeContent {
     background-color: var(--background-color);
     font-family: 'Open Sans', sans-serif;
