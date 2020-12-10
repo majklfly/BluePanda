@@ -535,6 +535,8 @@ $("#employeeDetailModal").on("shown.bs.modal", function(e) {
             $("#employeeLocation").html(result.data[0].name);
             if (result.data[0].jobTitle) {
                 $("#employeeJobTitle").html(result.data[0].jobTitle);
+            } else {
+                $("#employeeJobTitle").html("---");
             }
             // handling deleting profile on press
             $("#employeeDeleteButton").on("click", function(e) {
